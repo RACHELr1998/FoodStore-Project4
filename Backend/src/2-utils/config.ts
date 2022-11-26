@@ -1,5 +1,5 @@
 class Config {
-    public connectionString = "mongodb://127.0.0.1:27017/_____"; // Fill in the blank (database name)...
+    public connectionString = "mongodb://127.0.0.1:27017/foodStore"; 
     public port = 3001;
 }
 
