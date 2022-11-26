@@ -1,0 +1,10 @@
+html, body {
+    text-align: center;
+    background-image: linear-gradient(red, white);
+    font-size: x-large;
+    height: 100%;
+}
+
+a {
+    color: blue;
+}
