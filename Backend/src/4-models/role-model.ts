@@ -8,7 +8,7 @@ export const RoleSchema = new mongoose.Schema<IRoleModel>({
     roleName: {
         type: String,
         required: [true, "Missing role"],
-        minlength: [5, "Role must be minimum 5 charts"],
+        minlength: [4, "Role must be minimum 4 charts"],
         maxlength: [8, "Role can't exceed 8 charts"],
         trim: true,
         unique: true

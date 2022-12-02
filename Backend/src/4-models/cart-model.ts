@@ -1,30 +1,42 @@
 import mongoose from "mongoose";
 import { CustomerModel } from "./customer-model";
+import { CartItemModel, ICartItemModel } from "./cartItem-model";
 
 export interface ICartModel extends mongoose.Document {
-    customerId: mongoose.Schema.Types.ObjectId;
-    cartProdDate: Date;
+  customerId: mongoose.Schema.Types.ObjectId;
+  cartProdDate: Date;
+  cartItems: ICartItemModel;
 }
 
-export const CartSchema = new mongoose.Schema<ICartModel>({
+export const CartSchema = new mongoose.Schema<ICartModel>(
+  {
     customerId: {
-        type: mongoose.Schema.Types.ObjectId
+      type: mongoose.Schema.Types.ObjectId,
     },
     cartProdDate: {
-        type: Date,
-        required: [true, "Missing date"]
-    }
-}, {
+      type: Date,
+      required: [true, "Missing date"],
+    },
+    cartItems: {
+      type: CartItemModel,
+    },
+  },
+  {
     versionKey: false,
     toJSON: { virtuals: true },
-    id: false 
-});
+    id: false,
+  }
+);
 
 CartSchema.virtual("customer", {
-    ref: CustomerModel,
-    localField: "customerId",
-    foreignField: "_id",
-    justOne: true
+  ref: CustomerModel,
+  localField: "customerId",
+  foreignField: "_id",
+  justOne: true,
 });
 
-export const CartModel = mongoose.model<ICartModel>("CartModel", CartSchema, "carts");
+export const CartModel = mongoose.model<ICartModel>(
+  "CartModel",
+  CartSchema,
+  "carts"
+);
