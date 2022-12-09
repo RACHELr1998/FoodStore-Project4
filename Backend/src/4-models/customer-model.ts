@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { RoleModel } from "./role-model";
+import { IRoleModel, RoleModel } from "./role-model";
 
 export interface ICustomerModel extends mongoose.Document {
   firstName: string;
@@ -9,7 +9,7 @@ export interface ICustomerModel extends mongoose.Document {
   password: string;
   city: string;
   street: string;
-  roleId: mongoose.Schema.Types.ObjectId;
+  role: IRoleModel;
 }
 
 export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
@@ -33,10 +33,8 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
     IDCustomer: {
       type: Number,
       required: [true, "Missing ID"],
-      min: [8, "ID must be minimum 8 numbers"],
-      max: [9, "ID can't exceed 9 numbers"],
-      trim: true,
-      unique: true,
+      minlength: [8, "ID must be minimum 8 numbers"],
+      maxlength: [9, "ID can't exceed 9 numbers"],
     },
     username: {
       type: String,
@@ -66,8 +64,8 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       minlength: [2, "Street must be minimum 2 charts"],
       maxlength: [100, "Street can't exceed 100 charts"],
     },
-    roleId: {
-      type: mongoose.Schema.Types.ObjectId,
+    role: {
+      type: RoleModel,
     },
   },
   {
@@ -77,12 +75,12 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
   }
 );
 
-CustomerSchema.virtual("role", {
-  ref: RoleModel,
-  localField: "roleId",
-  foreignField: "_id",
-  justOne: true,
-});
+// CustomerSchema.virtual("role", {
+//   ref: RoleModel,
+//   localField: "roleId",
+//   foreignField: "_id",
+//   justOne: true,
+// });
 
 export const CustomerModel = mongoose.model<ICustomerModel>(
   "CustomerModel",

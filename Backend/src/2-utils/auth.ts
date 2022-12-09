@@ -1,6 +1,7 @@
 import { ICustomerModel } from "../4-models/customer-model";
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongoose";
+import { IRoleModel } from "../4-models/role-model";
 
 const secretKey = "myKittens";
 
@@ -47,7 +48,7 @@ function verifyToken(authHeader: string): Promise<Boolean> {
   });
 }
 
-function getCustomerRoleFromToken(authHeader: string): ObjectId {
+function getCustomerRoleFromToken(authHeader: string): string {
   // Extract the token, format: "Bearer token"
   const token = authHeader.substring(7);
   // Get container which contains the customer:
@@ -55,7 +56,7 @@ function getCustomerRoleFromToken(authHeader: string): ObjectId {
   // Get the Customer:
   const customer = container.customer;
   // Get Customer role:
-  const role = customer.roleId;
+  const role = customer.role.roleName;
 
   return role;
 }
