@@ -23,7 +23,7 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>(
       type: mongoose.Schema.Types.ObjectId,
     },
     cart: {
-      type: CartModel,
+      type: Array<ICartModel>,
       required: [true, "Missing cart"],
     },
     finalPrice: {

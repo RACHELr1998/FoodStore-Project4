@@ -18,7 +18,7 @@ export const CartSchema = new mongoose.Schema<ICartModel>(
       required: [true, "Missing date"],
     },
     cartItems: {
-      type: CartItemModel,
+      type: Array<ICartItemModel>,
     },
   },
   {
