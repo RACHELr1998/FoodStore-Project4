@@ -1,6 +1,6 @@
 class Config {
-    public connectionString = "mongodb://127.0.0.1:27017/foodStore"; 
-    public port = 3001;
+  public connectionString = "mongodb://127.0.0.1:27017/FoodStore";
+  public port = 3001;
 }
 
 const config = new Config();
