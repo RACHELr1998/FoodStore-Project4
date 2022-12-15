@@ -9,6 +9,10 @@ import { AddDataComponent } from './components/data-area/add-data/add-data.compo
 import { ListDataComponent } from './components/data-area/list-data/list-data.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductCardComponent } from './components/products-area/product-card/product-card.component';
+import { AddProductComponent } from './components/products-area/add-product/add-product.component';
+import { EditProductComponent } from './components/products-area/edit-product/edit-product.component';
+import { CartComponent } from './components/cart-area/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { HttpClientModule } from '@angular/common/http';
     MenuComponent,
     HomeComponent,
     AddDataComponent,
-    ListDataComponent
+    ListDataComponent,
+    ProductCardComponent,
+    AddProductComponent,
+    EditProductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
