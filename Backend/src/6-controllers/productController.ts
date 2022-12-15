@@ -4,9 +4,9 @@ import productLogic from "../5-logic/product-logic";
 
 const router = express.Router();
 
-// GET http://localhost:3001/api/categories
+// GET http://localhost:3001/api/products/categories
 router.get(
-  "/categories",
+  "/products/categories",
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const categories = await productLogic.getAllCategories();
