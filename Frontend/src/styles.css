@@ -1,10 +1,12 @@
-html, body {
-    text-align: center;
-    background-image: linear-gradient(red, white);
-    font-size: x-large;
-    height: 100%;
+html,
+body {
+  text-align: center;
+  background-image: linear-gradient(rgb(27, 131, 82), white);
+  font-size: x-large;
+  height: 100%;
+  width: 100%;
 }
 
 a {
-    color: blue;
+  color: white;
 }
