@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false,
-    backendUrl: "http://localhost:3001/api/____/"
+  production: false,
+  productsUrl: "http://localhost:3001/api/products/",
+  cartUrl: "http://localhost:3001/api/cart/",
+  orderUrl: "http://localhost:3001/api/order/",
 };
 
 /*
