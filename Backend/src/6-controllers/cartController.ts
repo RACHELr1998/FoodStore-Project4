@@ -23,12 +23,12 @@ const router = express.Router();
 // );
 
 router.get(
-  "/cart/customerId",
+  "/cart",
   //verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const _id = request.params.customerId;
-      const cart = await cartLogic.getCart(_id);
+      //   const _id = request.params.customerId;
+      const cart = await cartLogic.getCart();
       response.json(cart); // status: 200 - OK
     } catch (err: any) {
       next(err); // Jumping to catchAll middleware.
@@ -85,9 +85,9 @@ router.put(
   }
 );
 
-// POST http://localhost:3001/api/cartItem
+// POST http://localhost:3001/api/cart/cartItem
 router.post(
-  "/cartItem",
+  "/cart/cartItem",
   //verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
@@ -100,14 +100,14 @@ router.post(
   }
 );
 
-// PUT http://localhost:3001/api/cartItem
+// PUT http://localhost:3001/api/cart/cartItem/:_id
 router.put(
-  "/cartItem",
+  "/cart/cartItem/:_id",
   //verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const cartItemId = +request.params.cartItemId;
-      request.body.cartItemId = cartItemId; // Set the route cartItemId into the body
+      const _id = +request.params._id;
+      request.body._id = _id; // Set the route _id into the body
       const cartItem = new CartItemModel(request.body);
       const updatedCartItem = await cartLogic.updateCartItem(cartItem);
       response.json(updatedCartItem); // status: 200 - OK
@@ -117,9 +117,9 @@ router.put(
   }
 );
 
-// DELETE http://localhost:3001/api/cartItem/:cartItemId
+// DELETE http://localhost:3001/api/cart/cartItem/:_id
 router.delete(
-  "/cartItem/:_id",
+  "/cart/cartItem/:_id",
   //verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {

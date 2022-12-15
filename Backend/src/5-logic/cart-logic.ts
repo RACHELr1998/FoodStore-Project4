@@ -18,11 +18,11 @@ import { IOrderModel } from "../4-models/order-model";
 // }
 
 // Get cart of customer:
-function getCart(customerId: string): Promise<ICartModel> {
+function getCart(): Promise<ICartModel> {
   //get the customer from the provided Token:
   // const customerId = auth.getCustomerIdFromToken(authHeader);
-  if (!customerId) throw new IdNotFoundError(customerId);
-  return CartModel.findOne({ customerId }).populate("customer").exec();
+  //   if (!customerId) throw new IdNotFoundError(customerId);
+  return CartModel.findOne().populate("customer").exec();
 }
 
 //Add cart by customer
