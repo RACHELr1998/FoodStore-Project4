@@ -1,0 +1,14 @@
+<button *ngFor="let c of categories" (click)="getProductsByCategory(c._id)">
+  {{ c.categoryName }}
+</button>
+<button routerLink="/add">Add</button>
+<div *ngFor="let p of products">
+  <p>{{ p.productName }}</p>
+  <p>{{ p.price | currency : "ILS" }}</p>
+  <button routerLink="/addProduct" (click)="addProductToCart(p)">add</button>
+  <button routerLink="/edit/{{ p._id }}">edit</button>
+</div>
+
+<div>
+  <app-cart></app-cart>
+</div>
