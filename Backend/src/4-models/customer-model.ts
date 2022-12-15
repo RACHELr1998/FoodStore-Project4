@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { IRoleModel, RoleModel } from "./role-model";
+import { RoleModel } from "./role-model";
 
 export interface ICustomerModel extends mongoose.Document {
   firstName: string;
@@ -9,7 +9,7 @@ export interface ICustomerModel extends mongoose.Document {
   password: string;
   city: string;
   street: string;
-  role: IRoleModel;
+  roleId: mongoose.Schema.Types.ObjectId;
 }
 
 export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
@@ -64,8 +64,8 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       minlength: [2, "Street must be minimum 2 charts"],
       maxlength: [100, "Street can't exceed 100 charts"],
     },
-    role: {
-      type: RoleModel,
+    roleId: {
+      type: mongoose.Schema.Types.ObjectId,
     },
   },
   {
@@ -75,12 +75,12 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
   }
 );
 
-// CustomerSchema.virtual("role", {
-//   ref: RoleModel,
-//   localField: "roleId",
-//   foreignField: "_id",
-//   justOne: true,
-// });
+CustomerSchema.virtual("role", {
+  ref: RoleModel,
+  localField: "roleId",
+  foreignField: "_id",
+  justOne: true,
+});
 
 export const CustomerModel = mongoose.model<ICustomerModel>(
   "CustomerModel",

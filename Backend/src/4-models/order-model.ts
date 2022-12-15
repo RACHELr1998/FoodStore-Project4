@@ -5,7 +5,6 @@ import { CustomerModel } from "./customer-model";
 export interface IOrderModel extends mongoose.Document {
   customerId: mongoose.Schema.Types.ObjectId;
   cartId: mongoose.Schema.Types.ObjectId;
-  cart: ICartModel;
   finalPrice: number;
   deliveryCity: string;
   deliveryStreet: string;
@@ -21,10 +20,6 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>(
     },
     cartId: {
       type: mongoose.Schema.Types.ObjectId,
-    },
-    cart: {
-      type: Array<ICartModel>,
-      required: [true, "Missing cart"],
     },
     finalPrice: {
       type: Number,
