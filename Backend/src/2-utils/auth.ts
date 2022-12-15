@@ -48,7 +48,7 @@ function verifyToken(authHeader: string): Promise<Boolean> {
   });
 }
 
-function getCustomerRoleFromToken(authHeader: string): string {
+function getCustomerRoleFromToken(authHeader: string): ObjectId {
   // Extract the token, format: "Bearer token"
   const token = authHeader.substring(7);
   // Get container which contains the customer:
@@ -56,7 +56,7 @@ function getCustomerRoleFromToken(authHeader: string): string {
   // Get the Customer:
   const customer = container.customer;
   // Get Customer role:
-  const role = customer.role.roleName;
+  const role = customer.roleId;
 
   return role;
 }
