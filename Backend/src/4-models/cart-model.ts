@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { CustomerModel } from "./customer-model";
-import { CartItemModel, ICartItemModel } from "./cartItem-model";
+import { ICartItemModel } from "./cartItem-model";
 
 export interface ICartModel extends mongoose.Document {
   customerId: mongoose.Schema.Types.ObjectId;

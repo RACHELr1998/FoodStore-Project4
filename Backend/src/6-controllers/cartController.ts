@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import auth from "../2-utils/auth";
+import verifyLoggedIn from "../3-middleware/verify-logged-in";
 import { CartModel } from "../4-models/cart-model";
 import { CartItemModel } from "../4-models/cartItem-model";
 import { OrderModel } from "../4-models/order-model";
@@ -8,27 +9,13 @@ import cartLogic from "../5-logic/cart-logic";
 const router = express.Router();
 
 // GET http://localhost:3001/api/cart
-// router.get(
-//   "/api/cart",
-//   //verifyLoggedIn,
-//   async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//       const authHeader = request.header("authorization");
-//       const cart = await cartLogic.getCart(authHeader);
-//       response.json(cart); // status: 200 - OK
-//     } catch (err: any) {
-//       next(err); // Jumping to catchAll middleware.
-//     }
-//   }
-// );
-
 router.get(
   "/cart",
-  //verifyLoggedIn,
+  verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      //   const _id = request.params.customerId;
-      const cart = await cartLogic.getCart();
+      const authHeader = request.header("authorization");
+      const cart = await cartLogic.getCart(authHeader);
       response.json(cart); // status: 200 - OK
     } catch (err: any) {
       next(err); // Jumping to catchAll middleware.
@@ -37,28 +24,14 @@ router.get(
 );
 
 // POST http://localhost:3001/api/cart
-// router.post(
-//   "/api/cart",
-//   //verifyLoggedIn,
-//   async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//       const authHeader = request.header("authorization");
-//       const customerId = auth.getCustomerIdFromToken(authHeader);
-//       const cart = new CartModel(customerId, request.body);
-//       const addedCart = await cartLogic.addCart(cart);
-//       response.status(201).json(addedCart); // status: 201 - Created
-//     } catch (err: any) {
-//       next(err); // Jumping to catchAll middleware.
-//     }
-//   }
-// );
-
-// POST http://localhost:3001/api/cart
 router.post(
   "/cart",
-  //verifyLoggedIn,
+  verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
+      const authHeader = request.header("authorization");
+      const customerId = auth.getCustomerIdFromToken(authHeader);
+      request.body.customerId = customerId;
       const cart = new CartModel(request.body);
       const addedCart = await cartLogic.addCart(cart);
       response.status(201).json(addedCart); // status: 201 - Created
@@ -68,15 +41,16 @@ router.post(
   }
 );
 
-// PUT http://localhost:3001/api/cart
+// PUT http://localhost:3001/api/cart/:_id
 router.put(
-  "/cart",
-  //verifyLoggedIn,
+  "/cart/:_id",
+  verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const cartId = +request.params.cartId;
-      request.body.cartId = cartId; // Set the route cartId into the body
+      const _id = request.params._id;
+      request.body._id = _id; // Set the route cartId into the body
       const cart = new CartModel(request.body);
+      console.log(cart);
       const updatedCart = await cartLogic.updateCart(cart);
       response.json(updatedCart); // status: 200 - OK
     } catch (err: any) {
@@ -88,7 +62,7 @@ router.put(
 // POST http://localhost:3001/api/cart/cartItem
 router.post(
   "/cart/cartItem",
-  //verifyLoggedIn,
+  verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const cartItem = new CartItemModel(request.body);
@@ -103,7 +77,7 @@ router.post(
 // PUT http://localhost:3001/api/cart/cartItem/:_id
 router.put(
   "/cart/cartItem/:_id",
-  //verifyLoggedIn,
+  verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const _id = +request.params._id;
@@ -120,7 +94,7 @@ router.put(
 // DELETE http://localhost:3001/api/cart/cartItem/:_id
 router.delete(
   "/cart/cartItem/:_id",
-  //verifyLoggedIn,
+  verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const _id = request.params._id;
@@ -135,11 +109,15 @@ router.delete(
 // POST http://localhost:3001/api/order
 router.post(
   "/order",
-  //verifyLoggedIn,
+  verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const order = new OrderModel(request.body);
+      console.log(order);
+
       const addedOrder = await cartLogic.addOrder(order);
+      console.log(addedOrder);
+
       response.status(201).json(addedOrder); // status: 201 - Created
     } catch (err: any) {
       next(err); // Jumping to catchAll middleware.

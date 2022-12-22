@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import auth from "../2-utils/auth";
 import { CartModel, ICartModel } from "../4-models/cart-model";
 import { CartItemModel, ICartItemModel } from "../4-models/cartItem-model";
@@ -10,26 +9,18 @@ import {
 import { IOrderModel } from "../4-models/order-model";
 
 // Get cart of customer:
-// function getCart(authHeader: string): Promise<ICartModel> {
-//   //get the customer from the provided Token:
-//   const customerId = auth.getCustomerIdFromToken(authHeader);
-//   if (!customerId) throw new ObjectIdNotFoundError(customerId);
-//   return CartModel.findOne({ customerId }).populate("customer").exec();
-// }
-
-// Get cart of customer:
-function getCart(): Promise<ICartModel> {
+function getCart(authHeader: string): Promise<ICartModel> {
   //get the customer from the provided Token:
-  // const customerId = auth.getCustomerIdFromToken(authHeader);
-  //   if (!customerId) throw new IdNotFoundError(customerId);
-  return CartModel.findOne().populate("customer").exec();
+  const customerId = auth.getCustomerIdFromToken(authHeader);
+  if (!customerId) throw new ObjectIdNotFoundError(customerId);
+  return CartModel.findOne({ customerId }).populate("customer").exec();
 }
 
 //Add cart by customer
-function addCart(cart: ICartModel): Promise<ICartModel> {
+async function addCart(cart: ICartModel): Promise<ICartModel> {
   const errors = cart.validateSync();
   if (errors) throw new ValidationError(errors.message);
-  return cart.save();
+  return await cart.save();
 }
 
 // Update cart by customer:
@@ -39,15 +30,15 @@ async function updateCart(cart: ICartModel): Promise<ICartModel> {
   const updatedCart = await CartModel.findByIdAndUpdate(cart._id, cart, {
     returnOriginal: false,
   }).exec(); // { returnOriginal: false } --> return back db cart and not argument cart.
-  if (!updatedCart) throw new IdNotFoundError(cart._id);
+  if (!updatedCart) throw new ObjectIdNotFoundError(cart._id);
   return updatedCart;
 }
 
-//Add cartItem by Customer:
-function addCartItem(cartItem: ICartItemModel): Promise<ICartItemModel> {
-  const errors = cartItem.validateSync();
-  if (errors) throw new ValidationError(errors.message);
-  return cartItem.save();
+//Add cartItem by customer:
+async function addCartItem(cartItem: ICartItemModel): Promise<ICartItemModel> {
+  const errorsItem = cartItem.validateSync();
+  if (errorsItem) throw new ValidationError(errorsItem.message);
+  return await cartItem.save();
 }
 
 // Update cartItem by customer:
@@ -72,10 +63,10 @@ async function deleteCartItem(_id: string): Promise<void> {
 }
 
 //Add order:
-function addOrder(order: IOrderModel): Promise<IOrderModel> {
+async function addOrder(order: IOrderModel): Promise<IOrderModel> {
   const errors = order.validateSync();
   if (errors) throw new ValidationError(errors.message);
-  return order.save();
+  return await order.save();
 }
 
 export default {
