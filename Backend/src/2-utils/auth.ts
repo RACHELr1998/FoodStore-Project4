@@ -2,10 +2,20 @@ import { ICustomerModel } from "../4-models/customer-model";
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongoose";
 import { IRoleModel } from "../4-models/role-model";
+import { ICredentialsModel } from "../4-models/credentials-model";
 
 const secretKey = "myKittens";
 
 function generateNewToken(customer: ICustomerModel): string {
+  // Create object to insert inside the token:
+  const container = { customer };
+  // Generate new token:
+  const token = jwt.sign(container, secretKey, { expiresIn: "2h" });
+
+  return token;
+}
+
+function generateNewTokenForCredentials(customer: ICredentialsModel): string {
   // Create object to insert inside the token:
   const container = { customer };
   // Generate new token:
@@ -56,9 +66,9 @@ function getCustomerRoleFromToken(authHeader: string): ObjectId {
   // Get the Customer:
   const customer = container.customer;
   // Get Customer role:
-  const role = customer.roleId;
+  const roleId = customer.roleId;
 
-  return role;
+  return roleId;
 }
 
 function getCustomerIdFromToken(authHeader: string): ObjectId {
@@ -76,6 +86,7 @@ function getCustomerIdFromToken(authHeader: string): ObjectId {
 
 export default {
   generateNewToken,
+  generateNewTokenForCredentials,
   verifyToken,
   getCustomerRoleFromToken,
   getCustomerIdFromToken,

@@ -16,8 +16,11 @@ async function register(customer: ICustomerModel): Promise<string> {
   // hash password
   customer.password = hash(customer.password);
 
+  //assign roleId of customer
+  customer.roleId = Object("63823dbeeffd176c197cb9cc");
+
   // insert the new customer to the DB
-  customer.save();
+  await customer.save();
 
   // Delete customer password before return:
   delete customer.password;
@@ -28,8 +31,7 @@ async function register(customer: ICustomerModel): Promise<string> {
   return token;
 }
 
-async function login(credentials: ICredentialsModel) {
-  // :Promise<string>
+async function login(credentials: ICredentialsModel): Promise<string> {
   // Validate:
   const error = credentials.validateSync();
   if (error) throw new ValidationError(error.message);
@@ -38,26 +40,26 @@ async function login(credentials: ICredentialsModel) {
   credentials.password = hash(credentials.password);
 
   // Get the customer by his credentials
-  const customer = CredentialsModel.findOne({
-    username: credentials.username,
-    password: credentials.password,
+  const customer = await CustomerModel.findOne({
+    username: `${credentials.username}`,
+    password: `${credentials.password}`,
   }).exec();
 
   // If no such customer exists:
   if (!customer) throw new UnauthorizeError("Incorrect username or password!");
 
   // Delete customer password before return:
-  delete (await customer).password;
+  delete customer.password;
 
   // Generate new token:
-  //   const token = auth.generateNewToken(customer);
+  const token = auth.generateNewTokenForCredentials(customer);
 
-  //   return token;
+  return token;
 }
 
 async function usernameExists(username: string): Promise<boolean> {
   // Get amount of customers with 'username'
-  const usernameExists = CustomerModel.findOne(
+  const usernameExists = await CustomerModel.findOne(
     {
       username: username,
     },

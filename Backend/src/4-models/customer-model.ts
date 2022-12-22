@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { RoleModel } from "./role-model";
+import { IRoleModel, RoleModel } from "./role-model";
 
 export interface ICustomerModel extends mongoose.Document {
   firstName: string;
@@ -48,8 +48,7 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       type: String,
       required: [true, "Missing password"],
       minlength: [4, "Password must be minimum 4 charts"],
-      maxlength: [50, "Password can't exceed 50 charts"],
-      trim: true,
+      maxlength: [1000, "Password can't exceed 1000 charts"],
       unique: true,
     },
     city: {

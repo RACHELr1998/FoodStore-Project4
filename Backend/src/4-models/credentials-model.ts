@@ -20,7 +20,6 @@ export const CredentialsSchema = new mongoose.Schema<ICredentialsModel>(
       required: [true, "Missing password"],
       minlength: [4, "Password must be minimum 4 charts"],
       maxlength: [50, "Password can't exceed 50 charts"],
-      trim: true,
       unique: true,
     },
   },

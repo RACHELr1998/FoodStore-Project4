@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import auth from "../2-utils/auth";
 import { ForbiddenError, UnauthorizeError } from "../4-models/client-errors";
-import { RoleModel, IRoleModel } from "../4-models/role-model";
 
 async function verifyAdmin(
   request: Request,
@@ -21,13 +20,13 @@ async function verifyAdmin(
   }
 
   // Get role from token:
-  const role = auth.getCustomerRoleFromToken(authHeader);
+  const roleId = auth.getCustomerRoleFromToken(authHeader);
 
   // If role is not admin:
-  //   if (role !== RoleModel._id) {
-  //     next(new ForbiddenError("You are not authorized!"));
-  //     return;
-  //   }
+  if (roleId !== Object("63823da0effd176c197cb9ca")) {
+    next(new ForbiddenError("You are not authorized!"));
+    return;
+  }
 
   // All ok:
   next(); // Continue to next middleware or to desired route.
