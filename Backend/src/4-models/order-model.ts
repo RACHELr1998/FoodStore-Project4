@@ -50,8 +50,8 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>(
     creditCard: {
       type: Number,
       required: [true, "Missing credit card"],
-      min: [4, "Credit card must be minimum 4 numbers"],
-      max: [4, "Credit card can't exceed 4 numbers"],
+      minlength: [4, "Credit card must be minimum 4 numbers"],
+      maxlength: [100, "Credit card can't exceed 100 numbers"],
     },
   },
   {
