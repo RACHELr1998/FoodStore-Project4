@@ -3,23 +3,23 @@ import { IdNotFoundError, ValidationError } from "../4-models/client-errors";
 import { IProductModel, ProductModel } from "../4-models/product-model";
 
 // Get all categories:
-function getAllCategories(): Promise<ICategoryModel[]> {
-  return CategoryModel.find().exec();
+async function getAllCategories(): Promise<ICategoryModel[]> {
+  return await CategoryModel.find().exec();
 }
 
 // Get all products by categoryId:
-function getAllProductsByCategoryId(
+async function getAllProductsByCategoryId(
   categoryId: string
 ): Promise<IProductModel[]> {
   if (!categoryId) throw new IdNotFoundError(categoryId);
-  return ProductModel.find({ categoryId }).populate("category").exec();
+  return await ProductModel.find({ categoryId }).populate("category").exec();
 }
 
 // Add product By Admin:
-function addProduct(product: IProductModel): Promise<IProductModel> {
+async function addProduct(product: IProductModel): Promise<IProductModel> {
   const errors = product.validateSync();
   if (errors) throw new ValidationError(errors.message);
-  return product.save();
+  return await product.save();
 }
 
 // Update product by Admin:
