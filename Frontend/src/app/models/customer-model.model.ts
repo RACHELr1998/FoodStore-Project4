@@ -1,14 +1,15 @@
-import { RoleModel } from "./role-model.model";
+import CityEnum from "./city-enum";
+import RoleEnum from "./role-enum.model";
 
 export class CustomerModel {
   public _id: string;
   public firstName: string;
   public lastName: string;
-  public IDCustomer: number;
+  public IDCustomer: string;
   public username: string;
   public password: string;
-  public city: string;
+  public city: CityEnum;
   public street: string;
   public roleId: string;
-  public role: RoleModel;
+  public role: RoleEnum;
 }

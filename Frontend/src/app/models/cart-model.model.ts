@@ -6,5 +6,6 @@ export class CartModel {
   public customerId: string;
   public customer: CustomerModel;
   public cartProdDate: Date;
+  public isClosed: boolean;
   public cartItems: CartItemModel;
 }

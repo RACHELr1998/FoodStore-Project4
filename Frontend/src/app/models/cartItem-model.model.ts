@@ -9,4 +9,16 @@ export class CartItemModel {
   public totalPrice: number;
   public cartId: string;
   public cart: CartModel;
+
+  constructor(
+    quantity: number,
+    productId: string,
+    cartId: string,
+    totalPrice: number
+  ) {
+    (this.quantity = quantity),
+      (this.productId = productId),
+      (this.cartId = cartId),
+      (this.totalPrice = totalPrice);
+  }
 }

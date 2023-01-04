@@ -12,5 +12,5 @@ export class OrderModel {
   public deliveryStreet: string;
   public deliveryDate: Date;
   public orderDate: Date;
-  public creditCard: number;
+  public creditCard: string;
 }
