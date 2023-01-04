@@ -1,0 +1,22 @@
+<div>
+  <form
+    class="form"
+    [ngClass]="router.url === '/shop' ? 'move-search' : 'smaller-search'"
+  >
+    <mat-form-field appearance="outline">
+      <input
+        (keyup)="searchProducts($event)"
+        type="text"
+        matInput
+        placeholder="Search products"
+        name="search"
+        [(ngModel)]="search"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+      <br />
+      <button mat-button mat-icon-button (click)="clearSearch()" *ngIf="search">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</div>
