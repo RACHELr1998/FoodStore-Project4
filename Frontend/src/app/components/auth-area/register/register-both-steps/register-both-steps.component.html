@@ -1,0 +1,19 @@
+<div>
+  <mat-stepper linear #stepper>
+    <!-- Step One: Customer register: -->
+    <mat-step label="Register">
+      <app-register-step-one
+        (registerStepOne)="registerDetailsStepOne($event)"
+      ></app-register-step-one>
+    </mat-step>
+    <mat-step label="Contact Information" completed="false">
+      <app-register-step-two
+        (registerStepTwo)="registerDetailsStepTwo($event)"
+      ></app-register-step-two>
+    </mat-step>
+  </mat-stepper>
+
+  <div>
+    <a routerLink="/home"> Go to login </a>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<form (ngSubmit)="sendLastStep()" #registerForm="ngForm">
+  <label>First name:</label>
+  <input
+    type="text"
+    placeholder="first name"
+    name="firstName"
+    [(ngModel)]="customer.firstName"
+    #firstNameModel="ngModel"
+    required
+    minlength="2"
+    maxlength="50"
+  />
+  <span *ngIf="firstNameModel.errors?.['required'] && firstNameModel.touched"
+    >Missing first Name</span
+  >
+  <span *ngIf="firstNameModel.errors?.['minlength'] && firstNameModel.touched"
+    >First name too short</span
+  >
+  <span *ngIf="firstNameModel.errors?.['maxlength'] && firstNameModel.touched"
+    >First name too long</span
+  >
+
+  <label>Last name:</label>
+  <input
+    type="text"
+    placeholder="last name"
+    name="lastName"
+    [(ngModel)]="customer.lastName"
+    #lastNameModel="ngModel"
+    required
+    minlength="2"
+    maxlength="50"
+  />
+  <span *ngIf="lastNameModel.errors?.['required'] && lastNameModel.touched"
+    >Missing last Name</span
+  >
+  <span *ngIf="lastNameModel.errors?.['minlength'] && lastNameModel.touched"
+    >Last name too short</span
+  >
+  <span *ngIf="lastNameModel.errors?.['maxlength'] && lastNameModel.touched"
+    >Last name too long</span
+  >
+
+  <label>City:</label>
+  <select
+    name="city"
+    aria-placeholder="Select city..."
+    [(ngModel)]="customer.city"
+    #cityModel="ngModel"
+    required
+  >
+    <option *ngFor="let c of CityEnum | keyvalue" [value]="c.value">
+      {{c.value}}
+    </option>
+  </select>
+  <span *ngIf="cityModel.errors?.['required'] && cityModel.touched"
+    >Missing city</span
+  >
+
+  <label>Street:</label>
+  <input
+    type="text"
+    placeholder="street"
+    name="street"
+    [(ngModel)]="customer.street"
+    #streetModel="ngModel"
+    required
+    minlength="2"
+    maxlength="100"
+  />
+  <span *ngIf="streetModel.errors?.['required'] && streetModel.touched"
+    >Missing street</span
+  >
+  <span *ngIf="streetModel.errors?.['minlength'] && streetModel.touched"
+    >Street too short</span
+  >
+  <span *ngIf="streetModel.errors?.['maxlength'] && streetModel.touched"
+    >Street too long</span
+  >
+
+  <button [disabled]="registerForm.invalid">Register</button>
+</form>

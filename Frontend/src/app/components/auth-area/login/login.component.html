@@ -1,0 +1,67 @@
+<div>
+  <!-- If customer not logged in: -->
+  <div *ngIf="!customer">
+    <form (ngSubmit)="send()" #loginForm="ngForm">
+      <h4>Login</h4>
+
+      <label>Email:</label>
+      <input
+        type="email"
+        placeholder="example@gmail.com"
+        name="username"
+        [(ngModel)]="credentials.username"
+        #emailModel="ngModel"
+        required
+        minlength="10"
+        maxlength="100"
+      />
+      <span *ngIf="emailModel.errors?.['required'] && emailModel.touched"
+        >Missing email</span
+      >
+      <span *ngIf="emailModel.errors?.['minlength'] && emailModel.touched"
+        >Email too short</span
+      >
+      <span *ngIf="emailModel.errors?.['maxlength'] && emailModel.touched"
+        >Email too long</span
+      >
+
+      <label>Password:</label>
+      <input
+        type="password"
+        placeholder="****"
+        name="password"
+        [(ngModel)]="credentials.password"
+        #passwordModel="ngModel"
+        required
+        minlength="4"
+        maxlength="100"
+      />
+      <span *ngIf="passwordModel.errors?.['required'] && passwordModel.touched"
+        >Missing password</span
+      >
+      <span *ngIf="passwordModel.errors?.['minlength'] && passwordModel.touched"
+        >Password too short</span
+      >
+      <span *ngIf="passwordModel.errors?.['maxlength'] && passwordModel.touched"
+        >Password too long</span
+      >
+
+      <button [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <!-- Register new customer -->
+    <p>
+      Don't have an account?
+      <button class="sign-up-btn" mat-raised-button [routerLink]="'/register'">
+        Sign up
+      </button>
+    </p>
+  </div>
+
+  <!-- If customer logged in: -->
+  <div *ngIf="customer">
+    <button mat-raised-button routerLink="/shop" class="start-btn">
+      <div>{{ showLoggedInState() }}</div>
+    </button>
+  </div>
+</div>

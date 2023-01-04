@@ -1,0 +1,92 @@
+<form (ngSubmit)="sendNextStep()" #registerForm="ngForm">
+  <label>ID Number:</label>
+  <input
+    type="text"
+    placeholder="#########"
+    name="IDCustomer"
+    [(ngModel)]="customer.IDCustomer"
+    #IDCustomerModel="ngModel"
+    required
+    minlength="8"
+    maxlength="9"
+  />
+  <span *ngIf="IDCustomerModel.errors?.['required'] && IDCustomerModel.touched"
+    >Missing IDCustomer</span
+  >
+  <span *ngIf="IDCustomerModel.errors?.['minlength'] && IDCustomerModel.touched"
+    >IDCustomer too short</span
+  >
+  <span *ngIf="IDCustomerModel.errors?.['maxlength'] && IDCustomerModel.touched"
+    >IDCustomer too long</span
+  >
+
+  <label>Email:</label>
+  <input
+    type="email"
+    placeholder="example@gmail.com"
+    name="username"
+    [(ngModel)]="customer.username"
+    #emailModel="ngModel"
+    required
+    minlength="10"
+    maxlength="100"
+  />
+  <span *ngIf="emailModel.errors?.['required'] && emailModel.touched"
+    >Missing email</span
+  >
+  <span *ngIf="emailModel.errors?.['minlength'] && emailModel.touched"
+    >Email too short</span
+  >
+  <span *ngIf="emailModel.errors?.['maxlength'] && emailModel.touched"
+    >Email too long</span
+  >
+
+  <label>Password:</label>
+  <input
+    type="password"
+    placeholder="****"
+    name="password"
+    [(ngModel)]="customer.password"
+    #passwordModel="ngModel"
+    required
+    minlength="4"
+    maxlength="100"
+  />
+  <span *ngIf="passwordModel.errors?.['required'] && passwordModel.touched"
+    >Missing password</span
+  >
+  <span *ngIf="passwordModel.errors?.['minlength'] && passwordModel.touched"
+    >Password too short</span
+  >
+  <span *ngIf="passwordModel.errors?.['maxlength'] && passwordModel.touched"
+    >Password too long</span
+  >
+
+  <label>Confirm Password:</label>
+  <input
+    type="password"
+    placeholder="confirm password"
+    name="password"
+    [(ngModel)]="confirmPassword"
+    #confirmPasswordModel="ngModel"
+    required
+    minlength="6"
+    maxlength="100"
+  />
+  <span
+    *ngIf="confirmPasswordModel.errors?.['required'] && confirmPasswordModel.touched"
+    >Missing password</span
+  >
+  <span
+    *ngIf="confirmPasswordModel.errors?.['minlength'] && confirmPasswordModel.touched"
+    >confirmPassword too short</span
+  >
+  <span
+    *ngIf="confirmPasswordModel.errors?.['maxlength'] && confirmPasswordModel.touched"
+    >Password too long</span
+  >
+
+  <button [disabled]="registerForm.invalid">Next Step</button>
+
+  <span *ngIf="errorMessage != ''">{{ errorMessage }}</span>
+</form>
