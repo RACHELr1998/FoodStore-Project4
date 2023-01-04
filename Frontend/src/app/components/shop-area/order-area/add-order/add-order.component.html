@@ -1,0 +1,114 @@
+<div class="place-your-order-container">
+  <h2>Shipping Details</h2>
+  <form (ngSubmit)="addNewOrder()" #orderForm="ngForm">
+    <mat-hint
+      >Double click if your shipping information matches your customer
+      information</mat-hint
+    >
+
+    <mat-form-field appearance="fill" (dblclick)="doubleClickInfoShipping()">
+      <mat-label>City: </mat-label>
+      <mat-select
+        name="city"
+        [(ngModel)]="order.deliveryCity"
+        required
+        #cityModel="ngModel"
+      >
+        <mat-option
+          *ngFor="let enum of CityEnum | keyvalue"
+          [value]="enum.value"
+          >{{ enum.value }}</mat-option
+        >
+      </mat-select>
+
+      <mat-hint
+        align="start"
+        *ngIf="cityModel.errors?.['required'] && cityModel.touched"
+      >
+        Missing city
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Street: </mat-label>
+      <input
+        matInput
+        (dblclick)="doubleClickInfoShipping()"
+        type="text"
+        name="street"
+        [(ngModel)]="order.deliveryStreet"
+        #streetModel="ngModel"
+        required
+        minlength="2"
+        maxlength="100"
+      />
+
+      <mat-hint
+        align="start"
+        *ngIf="streetModel.touched && streetModel.errors?.['required']"
+      >
+        Missing street
+      </mat-hint>
+      <mat-hint
+        align="start"
+        *ngIf="streetModel.touched && streetModel.errors?.['minlength']"
+      >
+        Street must be minimum 2 charts
+      </mat-hint>
+      <mat-hint
+        align="start"
+        *ngIf="streetModel.touched && streetModel.errors?.['maxlength']"
+      >
+        Street can't exceed 100 charts
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Shipping Date: </mat-label>
+
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [min]="minDate"
+        [max]="maxDate"
+        name="date"
+        [(ngModel)]="order.deliveryDate"
+        required
+        #dateModel="ngModel"
+      />
+
+      <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+
+      <mat-hint
+        align="start"
+        *ngIf="dateModel.errors?.['required'] && dateModel.touched"
+      >
+        Missing shipping date
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Credit card: </mat-label>
+      <input
+        matInput
+        type="text"
+        name="creditCard"
+        [(ngModel)]="order.creditCard"
+        required
+        #creditCardModel="ngModel"
+        maxlength="16"
+      />
+      <mat-hint
+        align="start"
+        *ngIf="creditCardModel.errors?.['required'] && creditCardModel.touched"
+      >
+        Missing credit card
+      </mat-hint>
+    </mat-form-field>
+
+    <button [disabled]="orderForm.invalid" mat-raised-button>
+      <mat-icon>send</mat-icon>&nbsp; Order
+    </button>
+  </form>
+</div>

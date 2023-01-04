@@ -1,0 +1,27 @@
+<div>
+  <div class="divLeftOrder">
+    <div>
+      <h2 class="order-cart-header">Order Details</h2>
+      <div mat-raised-button routerLink="/shop">
+        <mat-icon>arrow_back_ios</mat-icon>Back to shop
+      </div>
+    </div>
+
+    <mat-list>
+      <mat-list-item *ngFor="let c of allCartItemsOfCart">
+        <app-cart-item [cartItem]="c"></app-cart-item>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+
+      <h5>No changes permitted here !</h5>
+
+      <div>
+        <p>Total: {{ totalPrice | currency : "ILS" }}</p>
+      </div>
+    </mat-list>
+  </div>
+
+  <div>
+    <app-add-order></app-add-order>
+  </div>
+</div>
