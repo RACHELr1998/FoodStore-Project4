@@ -1,3 +1,6 @@
 <div>
   <h1>ShopIn</h1>
+  <app-search-products
+    *ngIf="customer && (router.url === '/shop' || router.url === '/order')"
+  ></app-search-products>
 </div>

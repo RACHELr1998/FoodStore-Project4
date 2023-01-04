@@ -1,0 +1,10 @@
+.footer {
+  border-top: 1px solid purple;
+  text-align: center;
+  margin: 20px 0 0 0;
+  width: 100%;
+}
+
+.footer > p {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
