@@ -1,0 +1,44 @@
+<div class="boxProductCard">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{ product.productName }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <img
+      class="image-size"
+      mat-card-image
+      [src]="imageSource"
+      alt="product-image"
+    />
+
+    <mat-card-content>
+      <p>Price: {{ product.price | currency : "ILS" }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <app-product-modal [product]="product"></app-product-modal>
+
+      <!-- Add product to car button for customer only -->
+      <!-- <button
+        (click)="addProductToCart(product)"
+        mat-raised-button
+        class="add-btn"
+        *ngIf="customer"
+      >
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button> -->
+
+      <!-- Edit product button for admin only -->
+      <button
+        (click)="editProductByAdmin(product)"
+        mat-raised-button
+        class="edit-btn"
+        *ngIf="admin"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

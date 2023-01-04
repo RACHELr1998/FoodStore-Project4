@@ -1,0 +1,7 @@
+.boxProductCard {
+  display: inline-block;
+  margin: 10px;
+  border-radius: 3px;
+  text-align: center;
+  width: 195px;
+}

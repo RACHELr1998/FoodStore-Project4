@@ -1,0 +1,53 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Choose a quantity</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <form #quantityForm="ngForm">
+    <div class="modal-body">
+      <div class="mb-3">
+        <div class="input-group">
+          <input
+            type="number"
+            step="1.00"
+            name="quantityProd"
+            [(ngModel)]="quantityProd"
+            #quantityModel="ngModel"
+            required
+            min="0"
+            max="1000"
+          />
+          <span
+            *ngIf="quantityModel.touched && quantityModel.errors?.['required']"
+            >You must choose quantity.
+          </span>
+          <span *ngIf="quantityModel.touched && quantityModel.errors?.['min']"
+            >Quantity cannot be 0 or negative.
+          </span>
+          <span *ngIf="quantityModel.touched && quantityModel.errors?.['max']"
+            >Quantity cannot exceed 100.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        [disabled]="quantityForm.invalid"
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="modal.close($event)"
+      >
+        Add
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<button mat-button (click)="open(content, $event)">
+  <mat-icon>add_shopping_cart</mat-icon> add to cart
+</button>
