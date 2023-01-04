@@ -1,10 +1,8 @@
 import { ICustomerModel } from "../4-models/customer-model";
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongoose";
-import { IRoleModel } from "../4-models/role-model";
-import { ICredentialsModel } from "../4-models/credentials-model";
 
-const secretKey = "myKittens";
+const secretKey = "myProducts";
 
 function generateNewToken(customer: ICustomerModel): string {
   // Create object to insert inside the token:
@@ -15,14 +13,14 @@ function generateNewToken(customer: ICustomerModel): string {
   return token;
 }
 
-function generateNewTokenForCredentials(customer: ICredentialsModel): string {
-  // Create object to insert inside the token:
-  const container = { customer };
-  // Generate new token:
-  const token = jwt.sign(container, secretKey, { expiresIn: "2h" });
+// function generateNewTokenForCredentials(customer: ICredentialsModel): string {
+//   // Create object to insert inside the token:
+//   const container = { customer };
+//   // Generate new token:
+//   const token = jwt.sign(container, secretKey, { expiresIn: "2h" });
 
-  return token;
-}
+//   return token;
+// }
 
 function verifyToken(authHeader: string): Promise<Boolean> {
   return new Promise<boolean>((resolve, reject) => {
@@ -58,7 +56,7 @@ function verifyToken(authHeader: string): Promise<Boolean> {
   });
 }
 
-function getCustomerRoleFromToken(authHeader: string): ObjectId {
+function getCustomerRoleFromToken(authHeader: string): number {
   // Extract the token, format: "Bearer token"
   const token = authHeader.substring(7);
   // Get container which contains the customer:
@@ -66,9 +64,9 @@ function getCustomerRoleFromToken(authHeader: string): ObjectId {
   // Get the Customer:
   const customer = container.customer;
   // Get Customer role:
-  const roleId = customer.roleId;
+  const role = customer.role
 
-  return roleId;
+  return role;
 }
 
 function getCustomerIdFromToken(authHeader: string): ObjectId {
@@ -86,7 +84,7 @@ function getCustomerIdFromToken(authHeader: string): ObjectId {
 
 export default {
   generateNewToken,
-  generateNewTokenForCredentials,
+  //   generateNewTokenForCredentials,
   verifyToken,
   getCustomerRoleFromToken,
   getCustomerIdFromToken,
