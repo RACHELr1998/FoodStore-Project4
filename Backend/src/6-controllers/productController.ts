@@ -8,7 +8,7 @@ const router = express.Router();
 
 // GET http://localhost:3001/api/products/categories
 router.get(
-  "/products/categories",
+  "/categories",
   verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
@@ -22,15 +22,40 @@ router.get(
 
 // GET http://localhost:3001/api/products/:categoryId
 router.get(
-  "/products/:categoryId",
+  "/products",
   verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const categoryId = request.params.categoryId;
-      const products = await productLogic.getAllProductsByCategoryId(
-        categoryId
-      );
+      const products = await productLogic.getAllProducts();
       response.json(products);
+    } catch (err: any) {
+      next(err);
+    }
+  }
+);
+
+// GET http://localhost:3001/api/products/count
+router.get(
+  "/products/count",
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const count = await productLogic.countProducts();
+      response.json(count);
+    } catch (err: any) {
+      next(err);
+    }
+  }
+);
+
+// GET http://localhost:3001/api/products/:_id
+router.get(
+  "/products/:_id",
+  verifyLoggedIn,
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const _id = request.params._id;
+      const product = await productLogic.getOneProduct(_id);
+      response.json(product);
     } catch (err: any) {
       next(err);
     }
