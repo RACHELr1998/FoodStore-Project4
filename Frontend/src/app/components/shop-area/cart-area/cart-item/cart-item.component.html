@@ -1,0 +1,24 @@
+<div class="cartItemContainer" *ngIf="cartItem.product">
+  <div class="cartItemImg">
+    <img [src]="imageSource" />
+  </div>
+  <div *ngIf="router.url === '/order'">
+    <!-- <span
+        class="item-name"
+        [innerHTML]="cartItem.product.productName | highlightSearch : search"
+      ></span> -->
+  </div>
+  <div *ngIf="router.url !== '/order'">
+    <span class="cartItemName">{{ cartItem.product.productName }}</span>
+    {{ cartItem.product.price | currency : "ILS" }}
+    Quantity: {{ cartItem.quantity }}
+    Total:
+    {{ cartItem.quantity * cartItem.product.price | currency : "ILS" }}
+  </div>
+  <div class="cartItemAction">
+    <mat-icon
+      (click)="deleteCurrentCartItem(cartItem.productId, cartItem.cartId)"
+      >remove_shopping_cart</mat-icon
+    >remove
+  </div>
+</div>

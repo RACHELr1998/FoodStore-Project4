@@ -1,0 +1,26 @@
+<mat-list>
+  <h3 class="cartEmpty" *ngIf="allCartItemsOfCart?.length === 0">No Items</h3>
+
+  <h2>My Cart</h2>
+  <hr />
+
+  <mat-list-item *ngFor="let c of allCartItemsOfCart">
+    <app-cart-item
+      [cartItem]="c"
+      (cartItemDelete)="deleteCurrentCartItem($event)"
+    ></app-cart-item>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+
+  <div *ngIf="totalPrice && allCartItemsOfCart?.length !== 0">
+    <p>Total: {{ totalPrice | currency : "ILS" }}</p>
+  </div>
+
+  <div *ngIf="allCartItemsOfCart?.length !== 0" (click)="deleteAllCartItems()">
+    <mat-icon>delete_sweep</mat-icon>Delete All
+  </div>
+
+  <div *ngIf="allCartItemsOfCart?.length !== 0" routerLink="/order">
+    <mat-icon>shopping_basket</mat-icon>Order
+  </div>
+</mat-list>
