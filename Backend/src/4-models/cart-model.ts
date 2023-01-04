@@ -5,17 +5,20 @@ import { ICartItemModel } from "./cartItem-model";
 export interface ICartModel extends mongoose.Document {
   customerId: mongoose.Schema.Types.ObjectId;
   cartProdDate: Date;
+  isClosed: boolean;
   cartItems: ICartItemModel;
 }
 
 export const CartSchema = new mongoose.Schema<ICartModel>(
   {
-    customerId: {
-      type: mongoose.Schema.Types.ObjectId,
-    },
+    customerId: mongoose.Schema.Types.ObjectId,
     cartProdDate: {
       type: Date,
       required: [true, "Missing date"],
+    },
+    isClosed: {
+      type: Boolean,
+      default: false,
     },
     cartItems: {
       type: Array<ICartItemModel>,

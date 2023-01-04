@@ -1,15 +1,16 @@
 import mongoose from "mongoose";
-import { IRoleModel, RoleModel } from "./role-model";
+import CityEnum from "./city-enum";
+import RoleEnum from "./role-enum";
 
 export interface ICustomerModel extends mongoose.Document {
   firstName: string;
   lastName: string;
-  IDCustomer: number;
+  IDCustomer: string;
   username: string;
   password: string;
-  city: string;
+  city: CityEnum;
   street: string;
-  roleId: mongoose.Schema.Types.ObjectId;
+  role: RoleEnum;
 }
 
 export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
@@ -20,7 +21,6 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       minlength: [2, "First name must be minimum 2 chars"],
       maxlength: [50, "First name can't exceed 50 chars"],
       trim: true,
-      unique: true,
     },
     lastName: {
       type: String,
@@ -28,13 +28,14 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       minlength: [2, "Last name must be minimum 2 chars"],
       maxlength: [50, "Last name can't exceed 50 chars"],
       trim: true,
-      unique: true,
     },
     IDCustomer: {
-      type: Number,
+      type: String,
       required: [true, "Missing ID"],
       minlength: [8, "ID must be minimum 8 numbers"],
-      maxlength: [9, "ID can't exceed 9 numbers"],
+      maxlength: [128, "ID can't exceed 9 numbers"],
+      trim: true,
+      unique: true,
     },
     username: {
       type: String,
@@ -42,18 +43,21 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       minlength: [5, "Username must be minimum 5 chars"],
       maxlength: [50, "Username can't exceed 50 chars"],
       trim: true,
-      unique: true,
+      match: [
+        /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+        "You have entered an invalid email address",
+      ],
     },
     password: {
       type: String,
       required: [true, "Missing password"],
       minlength: [4, "Password must be minimum 4 charts"],
-      maxlength: [1000, "Password can't exceed 1000 charts"],
-      unique: true,
+      maxlength: [128, "Password can't exceed 1000 charts"],
     },
     city: {
       type: String,
       required: [true, "Missing city"],
+      enum: CityEnum,
       minlength: [2, "City must be minimum 2 charts"],
       maxlength: [100, "City can't exceed 100 charts"],
     },
@@ -63,8 +67,13 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       minlength: [2, "Street must be minimum 2 charts"],
       maxlength: [100, "Street can't exceed 100 charts"],
     },
-    roleId: {
-      type: mongoose.Schema.Types.ObjectId,
+    role: {
+      type: Number,
+      required: [true, "Missing role"],
+      enum: RoleEnum,
+      default: RoleEnum.Customer,
+      minlength: [0, "Role can't be negative"],
+      maxlength: [1, "Role can't exceed 1"],
     },
   },
   {
@@ -74,12 +83,12 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
   }
 );
 
-CustomerSchema.virtual("role", {
-  ref: RoleModel,
-  localField: "roleId",
-  foreignField: "_id",
-  justOne: true,
-});
+// CustomerSchema.virtual("role", {
+//   ref: RoleModel,
+//   localField: "roleId",
+//   foreignField: "_id",
+//   justOne: true,
+// });
 
 export const CustomerModel = mongoose.model<ICustomerModel>(
   "CustomerModel",

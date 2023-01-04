@@ -21,6 +21,12 @@ export class ObjectIdNotFoundError extends ClientError {
   }
 }
 
+export class OneOfIdsNotFoundError extends ClientError {
+  public constructor(_id1: string, _id2: string) {
+    super(404, `_id ${_id1} or ${_id2} not found`);
+  }
+}
+
 export class RouteNotFoundError extends ClientError {
   public constructor(route: string) {
     super(404, `route ${route} not found`);

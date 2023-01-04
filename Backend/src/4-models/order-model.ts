@@ -1,26 +1,23 @@
 import mongoose from "mongoose";
 import { CartModel, ICartModel } from "./cart-model";
+import CityEnum from "./city-enum";
 import { CustomerModel } from "./customer-model";
 
 export interface IOrderModel extends mongoose.Document {
   customerId: mongoose.Schema.Types.ObjectId;
   cartId: mongoose.Schema.Types.ObjectId;
   finalPrice: number;
-  deliveryCity: string;
+  deliveryCity: CityEnum;
   deliveryStreet: string;
   deliveryDate: Date;
   orderDate: Date;
-  creditCard: number;
+  creditCard: string;
 }
 
 export const OrderSchema = new mongoose.Schema<IOrderModel>(
   {
-    customerId: {
-      type: mongoose.Schema.Types.ObjectId,
-    },
-    cartId: {
-      type: mongoose.Schema.Types.ObjectId,
-    },
+    customerId: mongoose.Schema.Types.ObjectId,
+    cartId: mongoose.Schema.Types.ObjectId,
     finalPrice: {
       type: Number,
       required: [true, "Missing final price"],
@@ -32,12 +29,14 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>(
       required: [true, "Missing delivery-city"],
       minlength: [2, "Delivery-city must be minimum 2 chars"],
       maxlength: [100, "Delivery-city can't exceed 100 chars"],
+      enum: CityEnum,
     },
     deliveryStreet: {
       type: String,
       required: [true, "Missing delivery-street"],
       minlength: [2, "Delivery-street must be minimum 2 charts"],
       maxlength: [100, "Delivery-street can't exceed 100 charts"],
+      trim: true,
     },
     deliveryDate: {
       type: Date,
@@ -48,10 +47,9 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>(
       required: [true, "Missing order date"],
     },
     creditCard: {
-      type: Number,
+      type: String,
       required: [true, "Missing credit card"],
-      minlength: [4, "Credit card must be minimum 4 numbers"],
-      maxlength: [100, "Credit card can't exceed 100 numbers"],
+      trim: true,
     },
   },
   {
