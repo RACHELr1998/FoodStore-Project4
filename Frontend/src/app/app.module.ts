@@ -44,6 +44,11 @@ import { EndOrderMessageComponent } from "./components/shop-area/order-area/end-
 import { InvoicePDFComponent } from "./components/shop-area/order-area/invoice-pdf/invoice-pdf.component";
 import { MatSelectModule } from "@angular/material/select";
 import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MainShoppingPageComponent } from "./components/shop-area/main-shopping-page/main-shopping-page.component";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatNativeDateModule, MAT_DATE_LOCALE } from "@angular/material/core";
+import { MatInputModule } from "@angular/material/input";
+import { HighlighterPipe } from './highlighter.pipe';
 
 @NgModule({
   declarations: [
@@ -73,6 +78,8 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
     AddOrderComponent,
     EndOrderMessageComponent,
     InvoicePDFComponent,
+    MainShoppingPageComponent,
+    HighlighterPipe,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +102,9 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatSidenavModule,
+    MatNativeDateModule,
+    MatInputModule,
   ],
   providers: [
     {
