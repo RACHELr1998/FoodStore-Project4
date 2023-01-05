@@ -1,7 +1,7 @@
 <mat-tab-group (selectedIndexChange)="selectCategoryByIndex($event)">
   <mat-tab [label]="'All'">{{ products }}</mat-tab>
   <mat-tab
-    [disabled]="searchText !== ''"
+    [disabled]="searchProducts !== ''"
     *ngFor="let c of categories; let i = index"
     [label]="c.categoryName"
     >{{ products }}</mat-tab

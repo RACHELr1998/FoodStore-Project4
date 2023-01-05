@@ -16,7 +16,7 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
   public categories: CategoryModel[];
   public products: ProductModel[];
   private unsubscribe: Unsubscribe;
-  public searchText = "";
+  public searchProducts = "";
 
   constructor(
     private productsService: ProductsService,
@@ -30,9 +30,9 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
       this.categories = await this.productsService.getAllCategories();
 
       this.unsubscribe = productsStore.subscribe(() => {
-        this.searchText = productsStore.getState().searchText;
+        this.searchProducts = productsStore.getState().searchProducts;
 
-        if (this.searchText !== "") {
+        if (this.searchProducts !== "") {
           //* select "All" products
           this.tabGroup.selectedIndex = 0;
         }
