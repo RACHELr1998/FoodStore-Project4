@@ -180,7 +180,7 @@ export class CartService {
   ): Promise<void> {
     // Delete this cartItem in backend:
     const observable = this.http.delete(
-      `${environment.cartUrl}cartItem/+${cartId}/+${productId}`
+      `${environment.cartUrl}cartItem/` + cartId + "/" + productId
     );
     await firstValueFrom(observable);
 
@@ -194,7 +194,9 @@ export class CartService {
 
   //Delete all the Items from the cart:
   async deleteAllCartItemsFromCart(cartId: string): Promise<void> {
-    const observable = this.http.delete(environment.cartUrl + cartId);
+    const observable = this.http.delete(
+      `${environment.cartUrl}cartItem/` + cartId
+    );
     await firstValueFrom(observable);
 
     const action: CartsAction = {
