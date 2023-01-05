@@ -19,9 +19,10 @@ import { environment } from "src/environments/environment";
 })
 export class CartItemComponent implements OnInit, OnDestroy {
   private unsubscribe: Unsubscribe;
-  public search: string = null;
+  public search: string;
   public imageSource: string;
 
+  @Input() public onlyInTheCart: boolean;
   @Input() public cartItem: CartItemModel;
   @Output() public cartItemDelete = new EventEmitter<string[]>();
 
@@ -35,8 +36,8 @@ export class CartItemComponent implements OnInit, OnDestroy {
     });
   }
 
-  public deleteCurrentCartItem(productId: string, cartId: string): void {
-    this.cartItemDelete.emit([productId, cartId]);
+  public deleteCurrentCartItem(cartId: string, _id: string): void {
+    this.cartItemDelete.emit([cartId, _id]);
   }
 
   ngOnDestroy(): void {

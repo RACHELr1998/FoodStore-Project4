@@ -7,6 +7,7 @@
   <mat-list-item *ngFor="let c of allCartItemsOfCart">
     <app-cart-item
       [cartItem]="c"
+      [onlyInTheCart]="isThisCart"
       (cartItemDelete)="deleteCurrentCartItem($event)"
     ></app-cart-item>
     <mat-divider></mat-divider>
@@ -21,6 +22,6 @@
   </div>
 
   <div *ngIf="allCartItemsOfCart?.length !== 0" routerLink="/order">
-    <mat-icon>shopping_basket</mat-icon>Order
+    <mat-icon>shopping_basket</mat-icon>Go To Order
   </div>
 </mat-list>

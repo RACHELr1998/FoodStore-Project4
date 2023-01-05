@@ -20,6 +20,7 @@ import { CartItemDeleteComponent } from "../cart-item-delete/cart-item-delete.co
   styleUrls: ["./cart.component.css"],
 })
 export class CartComponent implements OnInit, OnDestroy {
+  public isThisCart = true;
   public allCartItemsOfCart: CartItemModel[];
   public totalPrice: number;
   private unsubscribe: Unsubscribe;
@@ -70,8 +71,11 @@ export class CartComponent implements OnInit, OnDestroy {
 
       dialogRef.afterClosed().subscribe(async (result) => {
         if (result === false || result === undefined) return;
+        console.log(arrId);
 
         await this.cartService.deleteCartItemFromCart(arrId[0], arrId[1]);
+        console.log(this.allCartItemsOfCart);
+
         this.notify.success("Item has been deleted");
       });
     } catch (err: any) {
