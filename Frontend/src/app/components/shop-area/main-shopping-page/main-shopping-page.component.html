@@ -1,0 +1,21 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    <app-cart
+      [openedTrigger]="opened"
+      (openedChange)="opened = $event"
+      (allCartItemsOfCartEvent)="allCartItemsOfCart = $event"
+    ></app-cart>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="side-bar-action-button" (click)="opened = !opened">
+      <div class="toggleBtn" *ngIf="allCartItemsOfCart">
+        {{ allCartItemsOfCart.length }}
+        <mat-icon>shopping_cart</mat-icon>
+      </div>
+    </div>
+    <div>
+      <app-categories-list></app-categories-list>
+    </div>
+    <app-products-list></app-products-list>
+  </mat-sidenav-content>
+</mat-sidenav-container>
