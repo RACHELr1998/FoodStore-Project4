@@ -130,10 +130,10 @@ async function deleteCartItemFromCart(
   productId: string
 ): Promise<void> {
   const deletedItem = await CartItemModel.deleteOne({
-    productId,
     cartId,
+    productId,
   }).exec();
-  if (!deletedItem) throw new OneOfIdsNotFoundError(productId, cartId);
+  if (!deletedItem) throw new OneOfIdsNotFoundError(cartId, productId);
 }
 
 //Delete all the Items from the cart by Customer:

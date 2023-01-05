@@ -143,7 +143,7 @@ router.post(
 //   }
 // );
 
-// DELETE http://localhost:3001/api/cart/cartItem/:_id
+// DELETE http://localhost:3001/api/cart/cartItem/:cartId/:productId
 router.delete(
   "/cart/cartItem/:cartId/:productId",
   verifyLoggedIn,
@@ -159,7 +159,7 @@ router.delete(
   }
 );
 
-// DELETE http://localhost:3001/api/items/:cartId
+// DELETE http://localhost:3001/api/cart/cartItem/:cartId
 router.delete(
   "/cart/cartItem/:cartId",
   verifyLoggedIn,
