@@ -1,7 +1,7 @@
 <div>
   <div class="divLeftOrder">
     <div>
-      <h2 class="order-cart-header">Order Details</h2>
+      <h2>Order Details</h2>
       <div mat-raised-button routerLink="/shop">
         <mat-icon>arrow_back_ios</mat-icon>Back to shop
       </div>
@@ -14,7 +14,7 @@
       </mat-list-item>
 
       <h5>No changes permitted here !</h5>
-
+      <mat-divider></mat-divider>
       <div>
         <p>Total: {{ totalPrice | currency : "ILS" }}</p>
       </div>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { Unsubscribe } from "redux";
 import { CartModel } from "src/app/models/cart-model.model";
 import { CartItemModel } from "src/app/models/cartItem-model.model";
 import { authStore } from "src/app/redux/AuthState";
+import { cartsStore } from "src/app/redux/carts.state";
 import { CartService } from "src/app/services/cart.service";
 import { NotifyService } from "src/app/services/notify.service";
 
@@ -14,6 +16,7 @@ export class OrderComponent implements OnInit {
   public allCartItemsOfCart: CartItemModel[];
   public cartByCustomer: CartModel;
   public totalPrice: number = 0;
+  public unsubscribe: Unsubscribe;
 
   constructor(
     private cartService: CartService,
@@ -22,9 +25,9 @@ export class OrderComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.cartByCustomer = await this.cartService.getCart();
+      const cart = await this.cartService.getCart();
       this.allCartItemsOfCart = await this.cartService.getAllItemsByCart(
-        this.cartByCustomer?._id
+        cart?._id
       );
       this.totalPrice = this.cartService.getTotalPriceCart();
     } catch (err: any) {
