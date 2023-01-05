@@ -12,7 +12,7 @@ import { authStore } from "src/app/redux/AuthState";
 export class HeaderComponent implements OnInit, OnDestroy {
   public customer: CustomerModel;
   private unsubscribe: Unsubscribe;
-  //   public pathByUserState: string;
+  //   public pathByPageState: string;
 
   constructor(public router: Router) {}
 
@@ -22,9 +22,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.customer = authStore.getState().customer;
 
       //   if (!this.customer) {
-      //     this.pathByUserState = "/home";
+      //     this.pathByPageState = "/home";
       //   } else {
-      //     this.pathByUserState = "/shop";
+      //     this.pathByPageState = "/shop";
       //   }
     });
   }
