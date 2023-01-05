@@ -60,7 +60,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
         .products.filter((p) =>
           p.productName
             .toLowerCase()
-            .startsWith(productsStore.getState().searchText.toLowerCase())
+            .startsWith(productsStore.getState().searchProducts.toLowerCase())
         );
     }
   }
