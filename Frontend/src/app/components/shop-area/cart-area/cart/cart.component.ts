@@ -71,10 +71,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
       dialogRef.afterClosed().subscribe(async (result) => {
         if (result === false || result === undefined) return;
-        console.log(arrId);
 
         await this.cartService.deleteCartItemFromCart(arrId[0], arrId[1]);
-        console.log(this.allCartItemsOfCart);
 
         this.notify.success("Item has been deleted");
       });

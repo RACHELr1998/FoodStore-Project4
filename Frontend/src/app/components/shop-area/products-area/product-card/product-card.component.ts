@@ -16,9 +16,9 @@ export class ProductCardComponent implements OnInit {
   public customer = this.authService.isLoggedIn();
   public admin = this.authService.isAdmin();
 
-  public imageSource: string;
+  //   public imageSource: string;
 
-  //   public imagesUrl = environment.imagesUrl;
+  public imagesUrl = environment.imagesUrl;
 
   constructor(
     private productsService: ProductsService,
@@ -26,7 +26,7 @@ export class ProductCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.imageSource = environment.imagesUrl + this.product.imageName;
+    // this.imageSource = environment.imagesUrl + this.product.imageName;
   }
 
   //Edit product by admin only:
@@ -34,7 +34,7 @@ export class ProductCardComponent implements OnInit {
   public editProduct = new EventEmitter<ProductModel>();
 
   public editProductByAdmin(product: ProductModel) {
-    this.productsService.isAction.emit(false);
+    this.productsService.isAdminAction.emit(false);
     this.editProduct.emit(product);
   }
 

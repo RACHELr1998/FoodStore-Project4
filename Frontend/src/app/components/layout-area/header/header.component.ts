@@ -20,12 +20,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.customer = authStore.getState().customer;
     this.unsubscribe = authStore.subscribe(() => {
       this.customer = authStore.getState().customer;
-
-      //   if (!this.customer) {
-      //     this.pathByPageState = "/home";
-      //   } else {
-      //     this.pathByPageState = "/shop";
-      //   }
     });
   }
 

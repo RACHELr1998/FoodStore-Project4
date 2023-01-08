@@ -4,6 +4,7 @@ import { CartModel } from "src/app/models/cart-model.model";
 import { CartItemModel } from "src/app/models/cartItem-model.model";
 import { ProductModel } from "src/app/models/product-model.model";
 import { cartsStore } from "src/app/redux/carts.state";
+import { AuthService } from "src/app/services/auth.service";
 import { CartService } from "src/app/services/cart.service";
 import { NotifyService } from "src/app/services/notify.service";
 
@@ -19,7 +20,10 @@ export class ProductModalComponent implements OnInit {
   @Input() public product: ProductModel;
   public cart: CartModel;
 
+  public admin = this.authService.isAdmin();
+
   constructor(
+    private authService: AuthService,
     private modalService: NgbModal,
     private cartsService: CartService,
     private notify: NotifyService
@@ -55,9 +59,9 @@ export class ProductModalComponent implements OnInit {
     try {
       if (!this.quantityProd) return;
 
-      //   if (cartsStore.getState().cartItems.length === 0) {
-      //       this.opened = true;
-      //   }
+      // if (cartsStore.getState().cartItems.length === 0) {
+      //     this.opened = true;
+      // }
 
       //Create new Cart Item:
       const cartItemAddedToCart = new CartItemModel(
