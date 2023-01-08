@@ -1,92 +1,128 @@
-<form (ngSubmit)="sendNextStep()" #registerForm="ngForm">
-  <label>ID Number:</label>
-  <input
-    type="text"
-    placeholder="#########"
-    name="IDCustomer"
-    [(ngModel)]="customer.IDCustomer"
-    #IDCustomerModel="ngModel"
-    required
-    minlength="8"
-    maxlength="9"
-  />
-  <span *ngIf="IDCustomerModel.errors?.['required'] && IDCustomerModel.touched"
-    >Missing IDCustomer</span
-  >
-  <span *ngIf="IDCustomerModel.errors?.['minlength'] && IDCustomerModel.touched"
-    >IDCustomer too short</span
-  >
-  <span *ngIf="IDCustomerModel.errors?.['maxlength'] && IDCustomerModel.touched"
-    >IDCustomer too long</span
-  >
+<div>
+  <form [formGroup]="registerForm">
+    <mat-form-field appearance="outline">
+      <mat-label>ID:</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="#########"
+        [formControl]="IDCustomer"
+      />
+      <mat-hint
+        align="start"
+        *ngIf="IDCustomer.errors?.['required'] && IDCustomer.touched"
+        >Missing ID
+      </mat-hint>
+      <mat-hint
+        align="start"
+        *ngIf="IDCustomer.errors?.['minlength'] && IDCustomer.touched"
+        >ID must be minimum 8 numbers
+      </mat-hint>
+      <mat-hint *ngIf="IDCustomer.errors?.['maxlength'] && IDCustomer.touched"
+        >ID can't exceed 128 numbers
+      </mat-hint>
+    </mat-form-field>
 
-  <label>Email:</label>
-  <input
-    type="email"
-    placeholder="example@gmail.com"
-    name="username"
-    [(ngModel)]="customer.username"
-    #emailModel="ngModel"
-    required
-    minlength="10"
-    maxlength="100"
-  />
-  <span *ngIf="emailModel.errors?.['required'] && emailModel.touched"
-    >Missing email</span
-  >
-  <span *ngIf="emailModel.errors?.['minlength'] && emailModel.touched"
-    >Email too short</span
-  >
-  <span *ngIf="emailModel.errors?.['maxlength'] && emailModel.touched"
-    >Email too long</span
-  >
+    <mat-form-field appearance="outline">
+      <mat-label>Email:</mat-label>
+      <input
+        type="email"
+        matInput
+        placeholder="example@gmail.com"
+        [formControl]="username"
+      />
+      <mat-hint
+        align="start"
+        *ngIf="username.errors?.['required'] && username.touched"
+        >Missing email</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="username.errors?.['minlength'] && username.touched"
+        >Email must be minimum 5 chars</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="username.errors?.['maxlength'] && username.touched"
+        >Email can't exceed 50 chars</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="!username.errors?.['required'] && !username.errors?.['minlength']
+  && !username.errors?.['maxlength'] && username.invalid
+  && username.touched && username.errors?.['invalidRegex']"
+      >
+        Email is invalid
+      </mat-hint>
+    </mat-form-field>
 
-  <label>Password:</label>
-  <input
-    type="password"
-    placeholder="****"
-    name="password"
-    [(ngModel)]="customer.password"
-    #passwordModel="ngModel"
-    required
-    minlength="4"
-    maxlength="100"
-  />
-  <span *ngIf="passwordModel.errors?.['required'] && passwordModel.touched"
-    >Missing password</span
-  >
-  <span *ngIf="passwordModel.errors?.['minlength'] && passwordModel.touched"
-    >Password too short</span
-  >
-  <span *ngIf="passwordModel.errors?.['maxlength'] && passwordModel.touched"
-    >Password too long</span
-  >
+    <mat-form-field appearance="outline">
+      <mat-label>Password:</mat-label>
+      <input
+        type="password"
+        matInput
+        placeholder="****"
+        [formControl]="password"
+      />
+      <mat-hint
+        align="start"
+        *ngIf="password.errors?.['required'] && password.touched"
+        >Missing password</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="password.errors?.['minlength'] && password.touched"
+        >Password must be minimum 4 charts</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="password.errors?.['maxlength'] && password.touched"
+        >Password can't exceed 1000 charts</mat-hint
+      >
+    </mat-form-field>
 
-  <label>Confirm Password:</label>
-  <input
-    type="password"
-    placeholder="confirm password"
-    name="password"
-    [(ngModel)]="confirmPassword"
-    #confirmPasswordModel="ngModel"
-    required
-    minlength="6"
-    maxlength="100"
-  />
-  <span
-    *ngIf="confirmPasswordModel.errors?.['required'] && confirmPasswordModel.touched"
-    >Missing password</span
-  >
-  <span
-    *ngIf="confirmPasswordModel.errors?.['minlength'] && confirmPasswordModel.touched"
-    >confirmPassword too short</span
-  >
-  <span
-    *ngIf="confirmPasswordModel.errors?.['maxlength'] && confirmPasswordModel.touched"
-    >Password too long</span
-  >
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm Password:</mat-label>
+      <input
+        type="password"
+        matInput
+        placeholder="confirm password"
+        [formControl]="confirmPassword"
+      />
+      <mat-hint
+        align="start"
+        *ngIf="confirmPassword.errors?.['required'] && confirmPassword.touched"
+        >Missing password</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="confirmPassword.errors?.['minlength'] && confirmPassword.touched"
+        >Password must be minimum 4 charts</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="confirmPassword.errors?.['maxlength'] && confirmPassword.touched"
+        >Password can't exceed 1000 charts</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="!confirmPassword.errors?.['required'] && !confirmPassword.errors?.['minlength']
+  && !confirmPassword.errors?.['maxlength'] && confirmPassword.invalid
+  && confirmPassword.errors?.['matchPassword'] && password.touched
+  && confirmPassword.touched"
+        >Password's don't match
+      </mat-hint>
+    </mat-form-field>
 
-  <button [disabled]="registerForm.invalid">Next Step</button>
-
-  <span *ngIf="errorMessage != ''">{{ errorMessage }}</span>
-</form>
+    <button
+      mat-button
+      [disabled]="registerForm.invalid"
+      (click)="sendNextStep()"
+    >
+      Next Step<mat-icon>navigate_next</mat-icon>
+    </button>
+    <div class="errorMessage">
+      <mat-hint *ngIf="errorMessage != ''">{{ errorMessage }}</mat-hint>
+    </div>
+  </form>
+</div>

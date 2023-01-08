@@ -1,0 +1,11 @@
+a,
+span {
+  text-align: center;
+  top: 15px;
+  font-size: larger;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: white;
+  text-decoration-line: none;
+  cursor: pointer;
+}

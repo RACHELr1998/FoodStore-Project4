@@ -1,0 +1,24 @@
+mat-stepper {
+  margin-bottom: 0px;
+}
+
+::ng-deep mat-stepper-header {
+  pointer-events: none !important;
+}
+
+a {
+  bottom: 25px;
+  color: rgb(17, 45, 78);
+  position: relative;
+  text-decoration: auto;
+}
+
+a > mat-icon {
+  color: rgb(17, 45, 78);
+}
+
+.backLoginText {
+  display: inline-block;
+  position: relative;
+  bottom: 6px;
+}

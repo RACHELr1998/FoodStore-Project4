@@ -1,82 +1,90 @@
-<form (ngSubmit)="sendLastStep()" #registerForm="ngForm">
-  <label>First name:</label>
-  <input
-    type="text"
-    placeholder="first name"
-    name="firstName"
-    [(ngModel)]="customer.firstName"
-    #firstNameModel="ngModel"
-    required
-    minlength="2"
-    maxlength="50"
-  />
-  <span *ngIf="firstNameModel.errors?.['required'] && firstNameModel.touched"
-    >Missing first Name</span
-  >
-  <span *ngIf="firstNameModel.errors?.['minlength'] && firstNameModel.touched"
-    >First name too short</span
-  >
-  <span *ngIf="firstNameModel.errors?.['maxlength'] && firstNameModel.touched"
-    >First name too long</span
-  >
+<div>
+  <form [formGroup]="registerStepTwoForm">
+    <mat-form-field appearance="outline">
+      <mat-label>First name:</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="first name"
+        [formControl]="firstName"
+      />
+      <mat-hint
+        align="start"
+        *ngIf="firstName.errors?.['required'] && firstName.touched"
+        >Missing first Name</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="firstName.errors?.['minlength'] && firstName.touched"
+        >First name too short</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="firstName.errors?.['maxlength'] && firstName.touched"
+        >First name too long</mat-hint
+      >
+    </mat-form-field>
 
-  <label>Last name:</label>
-  <input
-    type="text"
-    placeholder="last name"
-    name="lastName"
-    [(ngModel)]="customer.lastName"
-    #lastNameModel="ngModel"
-    required
-    minlength="2"
-    maxlength="50"
-  />
-  <span *ngIf="lastNameModel.errors?.['required'] && lastNameModel.touched"
-    >Missing last Name</span
-  >
-  <span *ngIf="lastNameModel.errors?.['minlength'] && lastNameModel.touched"
-    >Last name too short</span
-  >
-  <span *ngIf="lastNameModel.errors?.['maxlength'] && lastNameModel.touched"
-    >Last name too long</span
-  >
+    <mat-form-field appearance="outline">
+      <mat-label>Last name:</mat-label>
+      <input type="text" matInput [formControl]="lastName" />
+      <mat-hint
+        align="start"
+        *ngIf="lastName.errors?.['required'] && lastName.touched"
+        >Missing last Name</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="lastName.errors?.['minlength'] && lastName.touched"
+        >Last name too short</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="lastName.errors?.['maxlength'] && lastName.touched"
+        >Last name too long</mat-hint
+      >
+    </mat-form-field>
 
-  <label>City:</label>
-  <select
-    name="city"
-    aria-placeholder="Select city..."
-    [(ngModel)]="customer.city"
-    #cityModel="ngModel"
-    required
-  >
-    <option *ngFor="let c of CityEnum | keyvalue" [value]="c.value">
-      {{c.value}}
-    </option>
-  </select>
-  <span *ngIf="cityModel.errors?.['required'] && cityModel.touched"
-    >Missing city</span
-  >
+    <mat-form-field appearance="outline">
+      <mat-label>City:</mat-label>
+      <mat-select [formControl]="city" placeholder="Select...">
+        <mat-option
+          *ngFor="let enum of CityEnum | keyvalue"
+          [value]="enum.value"
+          >{{ enum.value }}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="start" *ngIf="city.errors?.['required'] && city.touched"
+        >Missing city</mat-hint
+      >
+    </mat-form-field>
 
-  <label>Street:</label>
-  <input
-    type="text"
-    placeholder="street"
-    name="street"
-    [(ngModel)]="customer.street"
-    #streetModel="ngModel"
-    required
-    minlength="2"
-    maxlength="100"
-  />
-  <span *ngIf="streetModel.errors?.['required'] && streetModel.touched"
-    >Missing street</span
-  >
-  <span *ngIf="streetModel.errors?.['minlength'] && streetModel.touched"
-    >Street too short</span
-  >
-  <span *ngIf="streetModel.errors?.['maxlength'] && streetModel.touched"
-    >Street too long</span
-  >
+    <mat-form-field appearance="outline">
+      <mat-label>Street:</mat-label>
+      <input type="text" matInput [formControl]="street" />
+      <mat-hint
+        align="start"
+        *ngIf="street.errors?.['required'] && street.touched"
+        >Missing street</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="street.errors?.['minlength'] && street.touched"
+        >Street too short</mat-hint
+      >
+      <mat-hint
+        align="start"
+        *ngIf="street.errors?.['maxlength'] && street.touched"
+        >Street too long</mat-hint
+      >
+    </mat-form-field>
 
-  <button [disabled]="registerForm.invalid">Register</button>
-</form>
+    <button
+      mat-button
+      [disabled]="registerStepTwoForm.invalid"
+      (click)="sendLastStep()"
+    >
+      Register
+    </button>
+  </form>
+</div>

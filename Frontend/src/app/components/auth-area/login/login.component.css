@@ -1,0 +1,85 @@
+form {
+  width: 300px;
+}
+
+.divLogin {
+  display: inline-block;
+  margin: 30px;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  background: rgb(224, 226, 233);
+}
+
+h2 {
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #48b619;
+  text-shadow: gray 5px 5px 8px;
+  text-decoration-skip: 1px solid gray;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  font-size: 17px;
+}
+
+button {
+  width: 100%;
+  margin: 10px 0 20px 0;
+}
+
+mat-label {
+  font-size: 20px;
+}
+
+mat-form-field {
+  display: block !important;
+}
+
+mat-hint {
+  color: red;
+}
+
+.startShopBtn {
+  background-color: rgb(225, 235, 98);
+  left: 50px;
+  width: 280px;
+  box-shadow: gray 2px 2px 2px 2px;
+}
+
+.startShopBtn:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.loginBtn {
+  background-color: #48b619;
+  color: rgb(70, 70, 70);
+  border-radius: 8px;
+  border: none;
+}
+
+.loginBtn:hover {
+  background-color: #9aee76;
+  cursor: pointer;
+}
+
+.loginBtn:disabled {
+  background-color: rgba(82, 136, 82, 0.6);
+  color: rgb(70, 70, 70);
+}
+
+.signUpBtn {
+  margin-top: 0;
+  background-color: rgb(225, 235, 98);
+  color: rgb(70, 70, 70);
+  border-radius: 8px;
+}
+
+.signUpBtn:hover {
+  background-color: rgba(225, 235, 98, 0.4);
+  color: rgb(70, 70, 70);
+}

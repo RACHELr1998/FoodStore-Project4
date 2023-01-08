@@ -1,0 +1,41 @@
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  height: 400px;
+}
+
+button {
+  width: 100%;
+  margin-bottom: 0;
+  width: 350px;
+  background-color: rgb(64, 105, 182);
+  color: rgb(70, 70, 70);
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: rgba(64, 105, 182);
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: rgb(141, 137, 137);
+  color: white;
+}
+
+mat-hint {
+  color: red;
+  margin-bottom: 0%;
+}
+
+mat-form-field {
+  display: block;
+  position: relative;
+  text-align: left;
+  font-size: 17px;
+  width: 350px;
+}

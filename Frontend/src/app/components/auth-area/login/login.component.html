@@ -1,58 +1,78 @@
 <div>
   <!-- If customer not logged in: -->
-  <div *ngIf="!customer">
+  <div *ngIf="!customer" class="divLogin">
     <form (ngSubmit)="send()" #loginForm="ngForm">
-      <h4>Login</h4>
+      <h2>Login</h2>
 
-      <label>Email:</label>
-      <input
-        type="email"
-        placeholder="example@gmail.com"
-        name="username"
-        [(ngModel)]="credentials.username"
-        #emailModel="ngModel"
-        required
-        minlength="10"
-        maxlength="100"
-      />
-      <span *ngIf="emailModel.errors?.['required'] && emailModel.touched"
-        >Missing email</span
-      >
-      <span *ngIf="emailModel.errors?.['minlength'] && emailModel.touched"
-        >Email too short</span
-      >
-      <span *ngIf="emailModel.errors?.['maxlength'] && emailModel.touched"
-        >Email too long</span
-      >
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Email:</mat-label>
+        <input
+          type="email"
+          matInput
+          placeholder="example@gmail.com"
+          name="username"
+          [(ngModel)]="credentials.username"
+          #emailModel="ngModel"
+          required
+          minlength="10"
+          maxlength="100"
+        />
+        <mat-hint
+          align="start"
+          *ngIf="emailModel.errors?.['required'] && emailModel.touched"
+          >Missing email</mat-hint
+        >
+        <mat-hint
+          align="start"
+          *ngIf="emailModel.errors?.['minlength'] && emailModel.touched"
+          >Email too short</mat-hint
+        >
+        <mat-hint
+          align="start"
+          *ngIf="emailModel.errors?.['maxlength'] && emailModel.touched"
+          >Email too long</mat-hint
+        >
+      </mat-form-field>
 
-      <label>Password:</label>
-      <input
-        type="password"
-        placeholder="****"
-        name="password"
-        [(ngModel)]="credentials.password"
-        #passwordModel="ngModel"
-        required
-        minlength="4"
-        maxlength="100"
-      />
-      <span *ngIf="passwordModel.errors?.['required'] && passwordModel.touched"
-        >Missing password</span
-      >
-      <span *ngIf="passwordModel.errors?.['minlength'] && passwordModel.touched"
-        >Password too short</span
-      >
-      <span *ngIf="passwordModel.errors?.['maxlength'] && passwordModel.touched"
-        >Password too long</span
-      >
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>Password:</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="****"
+          name="password"
+          [(ngModel)]="credentials.password"
+          #passwordModel="ngModel"
+          required
+          minlength="4"
+          maxlength="100"
+        />
+        <mat-hint
+          align="start"
+          *ngIf="passwordModel.errors?.['required'] && passwordModel.touched"
+          >Missing password</mat-hint
+        >
+        <mat-hint
+          align="start"
+          *ngIf="passwordModel.errors?.['minlength'] && passwordModel.touched"
+          >Password too short</mat-hint
+        >
+        <mat-hint
+          align="start"
+          *ngIf="passwordModel.errors?.['maxlength'] && passwordModel.touched"
+          >Password too long</mat-hint
+        >
+      </mat-form-field>
 
-      <button [disabled]="loginForm.invalid">Login</button>
+      <button mat-raised-button [disabled]="loginForm.invalid" class="loginBtn">
+        Login
+      </button>
     </form>
 
     <!-- Register new customer -->
     <p>
       Don't have an account?
-      <button class="sign-up-btn" mat-raised-button [routerLink]="'/register'">
+      <button mat-raised-button [routerLink]="'/register'" class="signUpBtn">
         Sign up
       </button>
     </p>
@@ -60,8 +80,8 @@
 
   <!-- If customer logged in: -->
   <div *ngIf="customer">
-    <button mat-raised-button routerLink="/shop" class="start-btn">
-      <div>{{ showLoggedInState() }}</div>
+    <button mat-raised-button routerLink="/shop" class="startShopBtn">
+      <div>{{ displayShopBtn() }}</div>
     </button>
   </div>
 </div>
