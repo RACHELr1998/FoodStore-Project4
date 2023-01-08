@@ -1,29 +1,99 @@
-<div>
-  <form (ngSubmit)="send()" [noValidate]="false">
+<div *ngIf="productToEdit">
+  <form (ngSubmit)="sendEditProduct()" [formGroup]="editForm">
     <h4>Edit Product</h4>
 
-    <label>Category:</label>
-    <br />
-    <select name="categoryId" required>
-      <option value="" disabled selected>Select...</option>
-      <option *ngFor="let c of categories" [value]="c._id">
-        {{ c.categoryName }}
-      </option>
-    </select>
-    <br />
+    <mat-form-field floatLabel="always" appearance="fill">
+      <mat-label>Category: </mat-label>
+      <mat-select
+        [formControl]="categoryIdInput"
+        placeholder="Select category..."
+        required
+      >
+        <mat-option *ngFor="let c of categories" [value]="c._id">{{
+          c.categoryName
+        }}</mat-option>
+      </mat-select>
+      <mat-hint
+        align="end"
+        *ngIf="categoryIdInput.errors?.['required'] && categoryIdInput.touched"
+        >Missing category</mat-hint
+      >
+    </mat-form-field>
 
-    <label>Product name:</label>
-    <input type="text" name="productName" required />
+    <mat-form-field floatLabel="always" appearance="fill">
+      <mat-label>Product Name: </mat-label>
+      <input
+        matInput
+        type="text"
+        [formControl]="nameInput"
+        required
+        minlength="2"
+        maxlength="50"
+      />
+      <mat-hint
+        align="end"
+        *ngIf="nameInput.touched && nameInput.errors?.['required']"
+        >Missing product name</mat-hint
+      >
+      <mat-hint
+        align="end"
+        *ngIf="nameInput.touched && nameInput.errors?.['minlength']"
+        >Product name must be minimum 2 chars</mat-hint
+      >
+      <mat-hint
+        align="end"
+        *ngIf="nameInput.touched && nameInput.errors?.['maxlength']"
+        >Product name can't exceed 50 chars</mat-hint
+      >
+      <mat-hint
+        align="end"
+        *ngIf="nameInput.invalid && !nameInput.errors?.['uniqueName']"
+      >
+        Name is taken by a different product</mat-hint
+      >
+    </mat-form-field>
 
-    <label>Price:</label>
+    <mat-form-field floatLabel="always" appearance="fill">
+      <mat-label>Price: </mat-label>
+      <input
+        matInput
+        type="number"
+        step="0.01"
+        [formControl]="priceInput"
+        required
+        min="0"
+        max="10000"
+      />
+      <mat-hint
+        align="end"
+        *ngIf="priceInput.touched && priceInput.errors?.['required']"
+        >Missing price</mat-hint
+      >
+      <mat-hint
+        align="end"
+        *ngIf="priceInput.touched && priceInput.errors?.['min']"
+        >Price can't be negative
+      </mat-hint>
+      <mat-hint
+        align="end"
+        *ngIf="priceInput.touched && priceInput.errors?.['max']"
+        >Price can't exceed 10000
+      </mat-hint>
+    </mat-form-field>
+
+    <button type="button" mat-raised-button (click)="fileInput.click()">
+      Choose File
+    </button>
     <input
-      type="number"
-      step="0.01"
-      name="price"
-      required
-      min="0"
-      max="10000"
+      accept="image/*"
+      #imageBox
+      [formControl]="imageInput"
+      hidden
+      (change)="fileImageSelected($event)"
+      (click)="displayError = true"
+      #fileInput
+      type="file"
     />
-    <button>Edit</button>
+    <button mat-raised-button [disabled]="editForm.invalid">Edit</button>
   </form>
 </div>
