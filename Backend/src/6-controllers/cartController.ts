@@ -1,9 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import auth from "../2-utils/auth";
 import verifyLoggedIn from "../3-middleware/verify-logged-in";
-import { CartModel } from "../4-models/cart-model";
 import { CartItemModel } from "../4-models/cartItem-model";
-import { OrderModel } from "../4-models/order-model";
 import cartLogic from "../5-logic/cart-logic";
 
 const router = express.Router();

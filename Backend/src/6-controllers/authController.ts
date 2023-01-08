@@ -52,7 +52,7 @@ router.post(
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const customer = new CustomerModel(request.body);
-      const isUnique = await authLogic.checkValidEmailAndIdNumber(customer);
+      const isUnique = await authLogic.areEmailOrIDCustomerExist(customer);
       response.status(201).json(isUnique);
     } catch (err: any) {
       next(err);

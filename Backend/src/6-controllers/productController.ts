@@ -68,6 +68,8 @@ router.post(
   verifyAdmin,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
+      console.log(request.body);
+      request.body.image = request.files?.image;
       const product = new ProductModel(request.body);
       const addedProduct = await productLogic.addProduct(product);
       response.status(201).json(addedProduct);
@@ -83,6 +85,7 @@ router.put(
   verifyAdmin,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
+      request.body.image = request.files?.image;
       const _id = request.params._id;
       request.body._id = _id;
       const product = new ProductModel(request.body);
