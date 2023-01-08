@@ -1,0 +1,49 @@
+mat-sidenav-container {
+  height: 100%;
+  position: relative;
+  background-color: #c7e9b9;
+}
+
+mat-sidenav {
+  width: 350px;
+  margin: auto;
+  border-radius: 0px 3px 3px 0;
+}
+
+.cart-icon {
+  bottom: 0;
+  top: 2px;
+}
+
+.total-amount {
+  color: white;
+  text-align: center;
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  bottom: 0;
+}
+
+.side-bar-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 35px;
+  border: 1px solid lightgray;
+  border-radius: 0px 8px 8px 0px;
+  z-index: 100;
+  background-color: rgba(127, 159, 169, 0.5);
+  top: 13%;
+  position: fixed;
+}
+
+.side-bar-button:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1020px) {
+  .side-bar-button {
+    top: 13%;
+  }
+}
