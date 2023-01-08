@@ -1,8 +1,8 @@
-<mat-list>
-  <h3 class="cartEmpty" *ngIf="allCartItemsOfCart?.length === 0">No Items</h3>
-
+<mat-list class="cart-list">
   <h2>My Cart</h2>
   <hr />
+
+  <h3 class="cartEmpty" *ngIf="allCartItemsOfCart?.length === 0">No Items</h3>
 
   <mat-list-item *ngFor="let c of allCartItemsOfCart">
     <app-cart-item
@@ -14,14 +14,25 @@
   </mat-list-item>
 
   <div *ngIf="totalPrice && allCartItemsOfCart?.length !== 0">
-    <p>Total: {{ totalPrice | currency : "ILS" }}</p>
+    <div class="totalPrice">Total: {{ totalPrice | currency : "ILS" }}</div>
   </div>
 
-  <div *ngIf="allCartItemsOfCart?.length !== 0" (click)="deleteAllCartItems()">
-    <mat-icon>delete_sweep</mat-icon>Delete All
-  </div>
+  <div class="cartActions">
+    <div
+      mat-button
+      *ngIf="allCartItemsOfCart?.length !== 0"
+      (click)="deleteAllCartItems()"
+      class="deleteAllBtn"
+    >
+      <mat-icon class="delete-icon">delete_sweep</mat-icon>Delete All
+    </div>
 
-  <div *ngIf="allCartItemsOfCart?.length !== 0" routerLink="/order">
-    <mat-icon>shopping_basket</mat-icon>Go To Order
+    <div
+      *ngIf="allCartItemsOfCart?.length !== 0"
+      routerLink="/order"
+      class="orderBtn"
+    >
+      <mat-icon class="order-icon">shopping_basket</mat-icon>Order Now
+    </div>
   </div>
 </mat-list>

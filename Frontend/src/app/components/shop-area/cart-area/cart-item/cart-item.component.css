@@ -1,3 +1,37 @@
 ::ng-deep .highlighted-text {
   background-color: yellow;
 }
+
+img {
+  width: 80px;
+  border-radius: 3px;
+}
+
+div > div:last-child {
+  margin-left: auto;
+}
+
+.cartItemAction {
+  cursor: pointer;
+  right: 5px;
+  float: right;
+  position: absolute;
+}
+
+.cartItemContainer {
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.cartItemContent {
+  margin-right: 15px;
+}
+
+.cartItemName {
+  font-size: 16px;
+  font-weight: 900;
+  margin-right: 5px;
+}

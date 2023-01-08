@@ -1,28 +1,30 @@
-<div class="cartItemContainer" *ngIf="cartItem.product">
-  <div class="cartItemImg">
-    <img [src]="imageSource" />
-  </div>
-  <ng-container *ngIf="router.url === '/order'">
-    <span
-      class="item-name"
-      [innerHTML]="cartItem.product.productName | highlighter : search"
-    ></span>
-  </ng-container>
-
-  <div>
-    <ng-container *ngIf="router.url !== '/order'">
-      <span class="cartItemName">{{ cartItem.product.productName }}</span>
+<div *ngIf="cartItem.product">
+  <div class="cartItemContainer">
+    <div class="cartItemImg">
+      <img [src]="imageSource" />
+    </div>
+    <ng-container *ngIf="router.url === '/order'">
+      <span
+        class="cartItemName"
+        [innerHTML]="cartItem.product.productName | highlighter : search"
+      ></span>
     </ng-container>
-    {{ cartItem.product.price | currency : "ILS" }}
-    Quantity: {{ cartItem.quantity }}
-    Total:
-    {{ cartItem.quantity * cartItem.product.price | currency : "ILS" }}
-  </div>
 
-  <div class="cartItemAction" *ngIf="onlyInTheCart">
-    <mat-icon
-      (click)="deleteCurrentCartItem(cartItem.cartId, cartItem.product._id)"
-      >remove_shopping_cart</mat-icon
-    >remove
+    <div class="cartItemContent">
+      <ng-container *ngIf="router.url !== '/order'">
+        <span class="cartItemName">{{ cartItem.product.productName }}</span>
+      </ng-container>
+      {{ cartItem.product.price | currency : "ILS" }}
+      Quantity: {{ cartItem.quantity }}
+      Total:
+      {{ cartItem.quantity * cartItem.product.price | currency : "ILS" }}
+    </div>
+
+    <div class="cartItemAction" *ngIf="onlyInTheCart">
+      <mat-icon
+        (click)="deleteCurrentCartItem(cartItem.cartId, cartItem.product._id)"
+        >remove_shopping_cart</mat-icon
+      >
+    </div>
   </div>
 </div>
