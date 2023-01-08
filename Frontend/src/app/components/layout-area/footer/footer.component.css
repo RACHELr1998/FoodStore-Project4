@@ -1,10 +1,31 @@
 .footer {
-  border-top: 1px solid purple;
-  text-align: center;
-  margin: 20px 0 0 0;
-  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.footer > p {
+p {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 5px;
+}
+
+a {
+  position: relative;
+}
+
+@media only screen and (max-width: 700px) {
+  .footer {
+    font-size: 10px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  br {
+    display: none;
+  }
 }
