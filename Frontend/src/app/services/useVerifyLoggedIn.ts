@@ -6,7 +6,7 @@ import { NotifyService } from "./notify.service";
 @Injectable({
   providedIn: "root",
 })
-export class UseVerifyAdmin implements CanActivate {
+export class UseVerifyLoggedIn implements CanActivate {
   public constructor(
     private notify: NotifyService,
     private authService: AuthService,
@@ -20,11 +20,6 @@ export class UseVerifyAdmin implements CanActivate {
       return false;
     }
 
-    if (!this.authService.isAdmin()) {
-      this.router.navigateByUrl("/");
-      this.notify.error("Access denied");
-      return false;
-    }
     return true;
   }
 }
