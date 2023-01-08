@@ -1,0 +1,40 @@
+.homeContainer {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+img {
+  height: 420px;
+  width: 450px;
+  position: static;
+}
+
+.aboutAndMsg {
+  width: 400px;
+  padding-right: 20px;
+}
+
+app-login {
+  margin-right: 350px;
+  padding-right: 20px;
+}
+
+@media only screen and (max-width: 800px) {
+  .homeContainer {
+    flex-direction: column-reverse;
+    width: auto;
+    height: 150%;
+    background-size: 80%;
+  }
+
+  app-login {
+    margin: auto;
+  }
+
+  .aboutAndMsg {
+    width: 300px;
+    padding-top: 50px;
+  }
+}

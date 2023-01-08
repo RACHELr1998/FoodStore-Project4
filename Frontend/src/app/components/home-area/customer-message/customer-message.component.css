@@ -1,0 +1,10 @@
+.yellowFont {
+  color: yellow;
+  text-shadow: rgb(83, 78, 64) 1px 0 10px;
+}
+
+p {
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: larger;
+}

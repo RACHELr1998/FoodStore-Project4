@@ -1,0 +1,27 @@
+<div>
+  <p>We have {{ productsNumber }} available products in our store!</p>
+  <p>{{ displayOrdersMessage() }}</p>
+
+  <ng-container *ngIf="customer">
+    <!-- First message option: open cart -->
+    <ng-container *ngIf="activeCart && activeCart._id && !activeCart.isClosed">
+      <p class="yellowFont">
+        You have an open cart from {{ activeCart.cartProdDate | date }} in our
+        store <br />
+        with a total price of {{ totalPrice | currency : "ILS" }}.
+      </p>
+    </ng-container>
+    <!-- Second message option: last order -->
+    <ng-container *ngIf="!activeCart && lastOrder">
+      <p class="yellowFont">
+        Your last purchase was on {{ lastOrder.orderDate | date }}.
+      </p>
+    </ng-container>
+    <!-- Third message option: first purchase -->
+    <ng-container *ngIf="customer && !activeCart && !lastOrder">
+      <p class="yellowFont">
+        {{ customer.firstName }} welcome to your first purchase !
+      </p>
+    </ng-container>
+  </ng-container>
+</div>
