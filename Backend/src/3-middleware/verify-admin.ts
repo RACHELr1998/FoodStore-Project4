@@ -23,7 +23,7 @@ async function verifyAdmin(
   const roleId = auth.getCustomerRoleFromToken(authHeader);
 
   // If role is not admin:
-  if (roleId != Object("63823da0effd176c197cb9ca")) {
+  if (roleId != 2) {
     next(new ForbiddenError("You are not authorized!"));
     return;
   }
