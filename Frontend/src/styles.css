@@ -1,15 +1,8 @@
 html,
 body {
   text-align: center;
-  background-image: linear-gradient(rgb(27, 131, 82), white);
+  background-color: #90cf76;
   font-size: x-large;
   height: 100%;
   width: 100%;
 }
-
-a {
-  color: white;
-}
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
