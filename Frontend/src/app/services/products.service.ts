@@ -19,7 +19,7 @@ import {
   providedIn: "root",
 })
 export class ProductsService {
-  isAction = new EventEmitter<boolean>();
+  isAdminAction = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient) {}
 
@@ -82,8 +82,8 @@ export class ProductsService {
   async addProduct(product: ProductModel): Promise<ProductModel> {
     // Convert ProductModel into FormData because we need to send text + image:
     const formData = new FormData();
-    formData.append("productName", product.productName);
     formData.append("categoryId", product.categoryId);
+    formData.append("productName", product.productName);
     formData.append("price", product.price.toString());
     formData.append("image", product.image);
 
@@ -92,7 +92,10 @@ export class ProductsService {
       environment.productsUrl,
       formData
     );
+    console.log(formData);
+
     const addedProduct: ProductModel = await firstValueFrom(observable);
+    console.log(addedProduct);
 
     // Send added product to redux global state:
     const action: ProductsAction = {

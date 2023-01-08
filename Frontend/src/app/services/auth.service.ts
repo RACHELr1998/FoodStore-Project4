@@ -66,7 +66,7 @@ export class AuthService {
   //         return await firstValueFrom(observable);
   //       }
 
-  async checkValidEmailAndIdNumber(customer: CustomerModel): Promise<boolean> {
+  async areEmailOrIDCustomerExist(customer: CustomerModel): Promise<boolean> {
     const observable = this.http.post<boolean>(
       `${environment.authUrl}check-unique`,
       customer
