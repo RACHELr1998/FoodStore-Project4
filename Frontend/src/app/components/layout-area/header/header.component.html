@@ -1,6 +1,11 @@
-<div>
-  <h1>ShopIn</h1>
-  <app-search-products
-    *ngIf="customer && (router.url === '/shop' || router.url === '/order')"
-  ></app-search-products>
+<div class="divHeader">
+  <img src="../../../../assets/images/logo-image.png" />
+
+  <app-auth-menu></app-auth-menu>
+
+  <div>
+    <app-search-products
+      *ngIf="customer && (router.url === '/shop' || router.url === '/order')"
+    ></app-search-products>
+  </div>
 </div>
