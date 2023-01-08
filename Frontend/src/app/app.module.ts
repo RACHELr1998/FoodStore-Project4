@@ -3,9 +3,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { LayoutComponent } from "./components/layout-area/layout/layout.component";
 import { HeaderComponent } from "./components/layout-area/header/header.component";
-import { MenuComponent } from "./components/layout-area/menu/menu.component";
 import { HomeComponent } from "./components/home-area/home/home.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ProductCardComponent } from "./components/shop-area/products-area/product-card/product-card.component";
 import { AddProductComponent } from "./components/admin-area/add-product/add-product.component";
@@ -15,8 +14,6 @@ import { NgbDatepickerModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ProductModalComponent } from "./components/shop-area/products-area/product-modal/product-modal.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ProductsListComponent } from "./components/shop-area/products-area/products-list/products-list.component";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { MatCardModule } from "@angular/material/card";
 import { LoginComponent } from "./components/auth-area/login/login.component";
 import { AuthMenuComponent } from "./components/auth-area/auth-menu/auth-menu.component";
 import { FooterComponent } from "./components/layout-area/footer/footer.component";
@@ -26,39 +23,31 @@ import { Interceptor } from "./services/interceptor";
 import { RegisterStepOneComponent } from "./components/auth-area/register/register-step-one/register-step-one.component";
 import { RegisterStepTwoComponent } from "./components/auth-area/register/register-step-two/register-step-two.component";
 import { RegisterBothStepsComponent } from "./components/auth-area/register/register-both-steps/register-both-steps.component";
-import { MatStepperModule } from "@angular/material/stepper";
 import { CategoriesListComponent } from "./components/shop-area/products-area/categories-list/categories-list.component";
-import { MatTabsModule } from "@angular/material/tabs";
-import { MatIconModule } from "@angular/material/icon";
 import { SearchProductsComponent } from "./components/shop-area/products-area/search-products/search-products.component";
-import { MatFormFieldModule } from "@angular/material/form-field";
 import { PageNotFoundComponent } from "./components/layout-area/page-not-found/page-not-found.component";
 import { CartItemComponent } from "./components/shop-area/cart-area/cart-item/cart-item.component";
-import { MatDividerModule } from "@angular/material/divider";
-import { MatListModule } from "@angular/material/list";
 import { CartItemDeleteComponent } from "./components/shop-area/cart-area/cart-item-delete/cart-item-delete.component";
-import { MatDialogModule } from "@angular/material/dialog";
 import { OrderComponent } from "./components/shop-area/order-area/order/order.component";
 import { AddOrderComponent } from "./components/shop-area/order-area/add-order/add-order.component";
 import { EndOrderMessageComponent } from "./components/shop-area/order-area/end-order-message/end-order-message.component";
 import { InvoicePDFComponent } from "./components/shop-area/order-area/invoice-pdf/invoice-pdf.component";
-import { MatSelectModule } from "@angular/material/select";
-import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MainShoppingPageComponent } from "./components/shop-area/main-shopping-page/main-shopping-page.component";
-import { MatSidenavModule } from "@angular/material/sidenav";
-import { MatNativeDateModule, MAT_DATE_LOCALE } from "@angular/material/core";
-import { MatInputModule } from "@angular/material/input";
-import { HighlighterPipe } from './highlighter.pipe';
+import { HighlighterPipe } from "./highlighter.pipe";
+import { AdminHomeComponent } from "./components/admin-area/admin-home/admin-home.component";
+import { AdminActionsComponent } from "./components/admin-area/admin-actions/admin-actions.component";
+import { AboutComponent } from "./components/home-area/about/about.component";
+import { CustomerMessageComponent } from "./components/home-area/customer-message/customer-message.component";
+import { MaterialModule } from "./material.module";
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
-    MenuComponent,
     HomeComponent,
     ProductCardComponent,
-    // AddProductComponent,
-    // EditProductComponent,
+    AddProductComponent,
+    EditProductComponent,
     CartComponent,
     ProductModalComponent,
     ProductsListComponent,
@@ -80,6 +69,10 @@ import { HighlighterPipe } from './highlighter.pipe';
     InvoicePDFComponent,
     MainShoppingPageComponent,
     HighlighterPipe,
+    AdminHomeComponent,
+    AdminActionsComponent,
+    AboutComponent,
+    CustomerMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,22 +82,9 @@ import { HighlighterPipe } from './highlighter.pipe';
     NgbModule,
     NgbDatepickerModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatCardModule,
     JwtModule,
-    MatStepperModule,
-    MatTabsModule,
-    MatCardModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatDividerModule,
-    MatListModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatSidenavModule,
-    MatNativeDateModule,
-    MatInputModule,
+    ReactiveFormsModule,
+    MaterialModule,
   ],
   providers: [
     {
