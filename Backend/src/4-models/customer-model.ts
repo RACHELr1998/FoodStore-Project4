@@ -33,7 +33,7 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       type: String,
       required: [true, "Missing ID"],
       minlength: [8, "ID must be minimum 8 numbers"],
-      maxlength: [128, "ID can't exceed 9 numbers"],
+      maxlength: [128, "ID can't exceed 128 numbers"],
       trim: true,
       unique: true,
     },
