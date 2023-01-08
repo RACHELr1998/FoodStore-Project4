@@ -1,7 +1,46 @@
 .boxProductCard {
   display: inline-block;
   margin: 10px;
-  border-radius: 3px;
+  border-radius: 20px;
   text-align: center;
   width: 195px;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.boxProductCard:hover {
+  box-shadow: 2px 1px 1px grey;
+  background: rgba(249, 247, 247, 1);
+}
+
+mat-card {
+  background: rgba(249, 247, 247, 0.925);
+  box-shadow: none;
+}
+
+img {
+  height: 170px;
+  margin-bottom: 0;
+}
+
+mat-card-title {
+  font-size: 14px !important;
+  margin-bottom: 0;
+
+  width: 124px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+mat-card-header {
+  display: inline-block !important;
+}
+
+mat-card-content {
+  margin-bottom: 0;
+}
+
+button {
+  background-color: rgb(17, 45, 78);
+  color: rgb(249, 247, 247);
 }

@@ -9,7 +9,7 @@
     <img
       class="image-size"
       mat-card-image
-      [src]="imageSource"
+      [src]="imagesUrl + product.imageName"
       alt="product-image"
     />
 
@@ -18,9 +18,8 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <app-product-modal [product]="product"></app-product-modal>
-
-      <!-- Add product to car button for customer only -->
+      <!-- Add product to cart button for customer only -->
+      <app-product-modal [product]="product" *ngIf="!admin"></app-product-modal>
       <!-- <button
         (click)="addProductToCart(product)"
         mat-raised-button

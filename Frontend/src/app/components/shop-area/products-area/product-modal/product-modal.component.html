@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Choose a quantity</h4>
+    <h2 class="modal-title" id="modal-basic-title">Choose a quantity:</h2>
     <button
       type="button"
       class="btn-close"
@@ -10,7 +10,7 @@
   </div>
   <form #quantityForm="ngForm">
     <div class="modal-body">
-      <div class="mb-3">
+      <div>
         <div class="input-group">
           <input
             type="number"
@@ -39,7 +39,7 @@
       <button
         [disabled]="quantityForm.invalid"
         type="button"
-        class="btn btn-outline-dark"
+        class="btn btn-outline-primary"
         (click)="modal.close($event)"
       >
         Add
@@ -48,6 +48,11 @@
   </form>
 </ng-template>
 
-<button mat-button (click)="open(content, $event)">
+<button
+  mat-raised-button
+  (click)="open(content, $event)"
+  *ngIf="!admin"
+  class="addToCartBtn"
+>
   <mat-icon>add_shopping_cart</mat-icon> add to cart
 </button>
