@@ -84,7 +84,7 @@ async function addCartItemToCart(
     cartItem.cartId = newCart._id;
 
     //Add new cartItem to the cart:
-    return cartItem.save();
+    return await cartItem.save();
   }
 
   //If there is existing cart:

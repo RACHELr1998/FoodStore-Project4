@@ -86,7 +86,7 @@ async function login(credentials: ICredentialsModel): Promise<string> {
 //   }
 // }
 
-async function checkValidEmailAndIdNumber(
+async function areEmailOrIDCustomerExist(
   customer: ICustomerModel
 ): Promise<boolean> {
   //Check if there is duplicate username:
@@ -113,6 +113,6 @@ async function checkValidEmailAndIdNumber(
 export default {
   register,
   login,
-  checkValidEmailAndIdNumber,
+  areEmailOrIDCustomerExist,
   //   usernameExists,
 };
