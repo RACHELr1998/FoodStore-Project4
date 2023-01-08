@@ -1,0 +1,17 @@
+<div>
+  <button
+    mat-raised-button
+    *ngIf="clickEditProduct && !isAdminAction"
+    (click)="addNewProduct()"
+  >
+    <mat-icon>add</mat-icon>&nbsp;Add Product
+  </button>
+  <app-add-product
+    *ngIf="isAdminAction"
+    [clickAddProduct]="isAdminAction"
+  ></app-add-product>
+  <app-edit-product
+    [ngStyle]="{ display: isAdminAction ? 'none' : 'block' }"
+    [editProduct]="product"
+  ></app-edit-product>
+</div>

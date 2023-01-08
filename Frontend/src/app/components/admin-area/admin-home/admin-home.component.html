@@ -1,0 +1,22 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    <app-admin-actions
+      [productToBeEdited]="editedProduct"
+      [isAdminActionInput]="isAdminAction"
+    ></app-admin-actions>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div (click)="opened = !opened">
+      <div>
+        <mat-icon *ngIf="opened">backspace</mat-icon>
+        <mat-icon *ngIf="!opened">add_circle_outline</mat-icon>
+      </div>
+    </div>
+    <div>
+      <app-categories-list></app-categories-list>
+      <app-products-list
+        (editProductEmit)="productToEdit($event)"
+      ></app-products-list>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
