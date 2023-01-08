@@ -17,7 +17,6 @@ export class LogoutComponent implements OnInit {
   ngOnInit(): void {
     try {
       this.authService.logout();
-      //   vacationService.resetVacations();
       this.notify.success("Bye bye");
       this.route.navigateByUrl("/home");
     } catch (err: any) {
