@@ -20,10 +20,10 @@ async function verifyAdmin(
   }
 
   // Get role from token:
-  const roleId = auth.getCustomerRoleFromToken(authHeader);
+  const role = auth.getCustomerRoleFromToken(authHeader);
 
   // If role is not admin:
-  if (roleId != 2) {
+  if (role != 2) {
     next(new ForbiddenError("You are not authorized!"));
     return;
   }
