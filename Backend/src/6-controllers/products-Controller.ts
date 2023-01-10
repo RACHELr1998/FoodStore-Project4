@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import verifyAdmin from "../3-middleware/verify-admin";
 import verifyLoggedIn from "../3-middleware/verify-logged-in";
 import { ProductModel } from "../4-models/product-model";
-import productLogic from "../5-logic/product-logic";
+import productsLogic from "../5-logic/products-logic";
 
 const router = express.Router();
 
@@ -12,7 +12,7 @@ router.get(
   verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const categories = await productLogic.getAllCategories();
+      const categories = await productsLogic.getAllCategories();
       response.json(categories);
     } catch (err: any) {
       next(err);
@@ -20,13 +20,13 @@ router.get(
   }
 );
 
-// GET http://localhost:3001/api/products/:categoryId
+// GET http://localhost:3001/api/products
 router.get(
   "/products",
   verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const products = await productLogic.getAllProducts();
+      const products = await productsLogic.getAllProducts();
       response.json(products);
     } catch (err: any) {
       next(err);
@@ -39,7 +39,7 @@ router.get(
   "/products/count",
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const count = await productLogic.countProducts();
+      const count = await productsLogic.countProducts();
       response.json(count);
     } catch (err: any) {
       next(err);
@@ -54,7 +54,7 @@ router.get(
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const _id = request.params._id;
-      const product = await productLogic.getOneProduct(_id);
+      const product = await productsLogic.getOneProduct(_id);
       response.json(product);
     } catch (err: any) {
       next(err);
@@ -68,10 +68,9 @@ router.post(
   verifyAdmin,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      console.log(request.body);
       request.body.image = request.files?.image;
       const product = new ProductModel(request.body);
-      const addedProduct = await productLogic.addProduct(product);
+      const addedProduct = await productsLogic.addProduct(product);
       response.status(201).json(addedProduct);
     } catch (err: any) {
       next(err);
@@ -89,7 +88,7 @@ router.put(
       const _id = request.params._id;
       request.body._id = _id;
       const product = new ProductModel(request.body);
-      const updatedProduct = await productLogic.updateProduct(product);
+      const updatedProduct = await productsLogic.updateProduct(product);
       response.json(updatedProduct);
     } catch (err: any) {
       next(err);

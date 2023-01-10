@@ -33,19 +33,6 @@ router.post(
   }
 );
 
-// GET http://localhost:3001/api/auth/:username
-// router.get(
-//   "/auth/:username",
-//   async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//       const exists = await authLogic.usernameExists(request.params.username);
-//       response.json(exists);
-//     } catch (err: any) {
-//       next(err); // Jumping to catchAll middleware.
-//     }
-//   }
-// );
-
 // POST http://localhost:3001/api/auth/check-unique
 router.post(
   "/auth/check-unique",

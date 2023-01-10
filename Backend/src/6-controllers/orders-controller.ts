@@ -5,6 +5,25 @@ import ordersLogic from "../5-logic/orders-logic";
 
 const router = express.Router();
 
+// POST http://localhost:3001/api/order/
+router.post(
+  "/order",
+  verifyLoggedIn,
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const order = new OrderModel(request.body);
+      order.creditCard4Charts = order.creditCard
+        .toString()
+        .slice(-4)
+        .padStart(order.creditCard.toString().length, "*");
+      const addedOrder = await ordersLogic.addOrder(order);
+      response.status(201).json(addedOrder);
+    } catch (err: any) {
+      next(err);
+    }
+  }
+);
+
 // GET http://localhost:3001/api/order/
 router.get(
   "/order",
@@ -13,21 +32,6 @@ router.get(
     try {
       const orders = await ordersLogic.getAllOrders();
       response.json(orders);
-    } catch (err: any) {
-      next(err);
-    }
-  }
-);
-
-// POST http://localhost:3001/api/order/
-router.post(
-  "/order",
-  verifyLoggedIn,
-  async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const order = new OrderModel(request.body);
-      const addedOrder = await ordersLogic.addOrder(order);
-      response.status(201).json(addedOrder);
     } catch (err: any) {
       next(err);
     }
