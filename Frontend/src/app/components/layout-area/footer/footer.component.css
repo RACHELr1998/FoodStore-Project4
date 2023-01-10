@@ -23,9 +23,3 @@ a {
     margin-bottom: 25px;
   }
 }
-
-@media screen and (min-width: 700px) {
-  br {
-    display: none;
-  }
-}

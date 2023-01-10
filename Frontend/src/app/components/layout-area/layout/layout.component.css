@@ -14,7 +14,6 @@ footer {
 main {
   grid-column: span 6;
   overflow: auto;
-  /* background-color: lightblue; */
 }
 
 @media only screen and (max-width: 1020px) {

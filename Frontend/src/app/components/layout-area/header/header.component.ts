@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Unsubscribe } from "redux";
 import { CustomerModel } from "src/app/models/customer-model.model";
-import { authStore } from "src/app/redux/AuthState";
+import { authStore } from "src/app/redux/auth.state";
 
 @Component({
   selector: "app-header",
@@ -12,7 +12,6 @@ import { authStore } from "src/app/redux/AuthState";
 export class HeaderComponent implements OnInit, OnDestroy {
   public customer: CustomerModel;
   private unsubscribe: Unsubscribe;
-  //   public pathByPageState: string;
 
   constructor(public router: Router) {}
 

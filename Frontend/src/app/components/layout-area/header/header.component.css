@@ -1,24 +1,15 @@
 .divHeader {
   height: 100%;
-}
-
-h1 {
-  font-family: titleFont;
-  color: white;
-  font-size: 70px;
-  margin: 30px;
-  text-align: center;
-  text-shadow: rgb(83, 78, 64) 1px 0 25px;
-}
-@font-face {
-  font-family: titleFont;
-  src: url("../../../../assets/fonts/PaytoneOne-Regular.ttf");
+  background-image: url("../../../../assets/images/logo-image.png");
+  background-size: 48%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 img {
   height: 120px;
   width: 580px;
-  margin-left: 130px;
+  margin-left: 220px;
 }
 
 app-search-products {
@@ -38,21 +29,7 @@ app-auth-menu {
   color: white;
 }
 
-@media only screen and (max-width: 850px) {
-  h1 {
-    font-size: 25px;
-    padding-top: 48px;
-    left: 85px;
-  }
-}
-
 @media only screen and (max-width: 1020px) {
-  /* h1 {
-    font-size: 25px;
-    padding-top: 48px;
-    left: 85px;
-  } */
-
   app-search {
     position: absolute;
     left: 400px;
