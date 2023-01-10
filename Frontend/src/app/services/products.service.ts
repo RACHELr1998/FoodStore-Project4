@@ -13,7 +13,7 @@ import {
   ProductsAction,
   ProductsActionType,
   productsStore,
-} from "../redux/productsState";
+} from "../redux/product.state";
 
 @Injectable({
   providedIn: "root",
@@ -78,7 +78,7 @@ export class ProductsService {
     return await firstValueFrom(observable);
   }
 
-  //Add product
+  //Add product:
   async addProduct(product: ProductModel): Promise<ProductModel> {
     // Convert ProductModel into FormData because we need to send text + image:
     const formData = new FormData();
@@ -92,10 +92,8 @@ export class ProductsService {
       environment.productsUrl,
       formData
     );
-    console.log(formData);
 
     const addedProduct: ProductModel = await firstValueFrom(observable);
-    console.log(addedProduct);
 
     // Send added product to redux global state:
     const action: ProductsAction = {
@@ -107,6 +105,7 @@ export class ProductsService {
     return addedProduct;
   }
 
+  //Update product:
   async updateProduct(product: ProductModel): Promise<ProductModel> {
     // Convert ProductModel into FormData because we need to send text + image:
     const formData = new FormData();
@@ -115,7 +114,6 @@ export class ProductsService {
     formData.append("categoryId", product.categoryId);
     formData.append("price", product.price.toString());
     formData.append("image", product.image);
-    // formData.append("imageName", product.imageName);
 
     // Send product to backend:
     const observable = this.http.put<ProductModel>(

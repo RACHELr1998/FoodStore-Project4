@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
 import { environment } from "src/environments/environment";
 import { OrderModel } from "../models/order-model.model";
-import { authStore } from "../redux/AuthState";
+import { authStore } from "../redux/auth.state";
 
 import {
   OrdersAction,

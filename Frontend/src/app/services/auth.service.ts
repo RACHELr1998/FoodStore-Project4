@@ -4,9 +4,9 @@ import { environment } from "src/environments/environment";
 import { CredentialsModel } from "../models/credentials-model.model";
 import { CustomerModel } from "../models/customer-model.model";
 import jwtDecode from "jwt-decode";
-import { AuthAction, AuthActionType, authStore } from "../redux/AuthState";
+import { AuthAction, AuthActionType, authStore } from "../redux/auth.state";
 import { HttpClient } from "@angular/common/http";
-import RoleEnum from "../models/role-enum.model";
+import RoleEnum from "../models/role-enum";
 
 @Injectable({
   providedIn: "root",
@@ -16,12 +16,16 @@ export class AuthService {
 
   // Register:
   public async register(customer: CustomerModel): Promise<void> {
+    customer.firstName =
+      customer.firstName.charAt(0).toUpperCase() + customer.firstName.slice(1);
+    customer.lastName =
+      customer.lastName.charAt(0).toUpperCase() + customer.lastName.slice(1);
+
     // Send user object to backend, get back token:
     const observable = this.http.post<string>(
       `${environment.authUrl}register`,
       customer
     );
-    console.log(customer);
 
     // Extract token:
     const token = await firstValueFrom(observable);
@@ -47,7 +51,7 @@ export class AuthService {
 
     // Save token in redux global state:
     const action: AuthAction = {
-      type: AuthActionType.Register,
+      type: AuthActionType.Login,
       payload: token,
     };
     authStore.dispatch(action);
@@ -59,12 +63,6 @@ export class AuthService {
     const action: AuthAction = { type: AuthActionType.Logout };
     authStore.dispatch(action);
   }
-
-  //   public async usernameExists(username: string): Promise<boolean> {
-  //         // Check if username exists
-  //         const observable = this.http.get<boolean>(environment.authUrl + username);
-  //         return await firstValueFrom(observable);
-  //       }
 
   async areEmailOrIDCustomerExist(customer: CustomerModel): Promise<boolean> {
     const observable = this.http.post<boolean>(
@@ -81,14 +79,5 @@ export class AuthService {
       if (!customer) return false;
     }
     return customer.role === RoleEnum.Admin;
-  }
-
-  // Check if a valid token exists;
-  public isLoggedIn(): boolean {
-    if (authStore.getState().token === null) return false;
-    const container: { exp: number } = jwtDecode(authStore.getState().token);
-    const now = new Date();
-    //token.exp is in seconds, while Date.getTime is in milliseconds
-    return container.exp * 1000 > now.getTime();
   }
 }
