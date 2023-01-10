@@ -7,5 +7,9 @@ span {
     "Lucida Sans", Arial, sans-serif;
   color: white;
   text-decoration-line: none;
+}
+
+.logoutText {
   cursor: pointer;
+  text-decoration-line: none;
 }

@@ -77,7 +77,7 @@
       <mat-hint
         align="start"
         *ngIf="password.errors?.['maxlength'] && password.touched"
-        >Password can't exceed 1000 charts</mat-hint
+        >Password can't exceed 128 charts</mat-hint
       >
     </mat-form-field>
 
@@ -102,14 +102,14 @@
       <mat-hint
         align="start"
         *ngIf="confirmPassword.errors?.['maxlength'] && confirmPassword.touched"
-        >Password can't exceed 1000 charts</mat-hint
+        >Password can't exceed 128 charts</mat-hint
       >
       <mat-hint
         align="start"
         *ngIf="!confirmPassword.errors?.['required'] && !confirmPassword.errors?.['minlength']
-  && !confirmPassword.errors?.['maxlength'] && confirmPassword.invalid
-  && confirmPassword.errors?.['matchPassword'] && password.touched
-  && confirmPassword.touched"
+        && !confirmPassword.errors?.['maxlength'] && confirmPassword.invalid
+        && confirmPassword.errors?.['matchPassword'] && password.touched
+        && confirmPassword.touched"
         >Password's don't match
       </mat-hint>
     </mat-form-field>
@@ -121,8 +121,10 @@
     >
       Next Step<mat-icon>navigate_next</mat-icon>
     </button>
+
     <div class="errorMessage">
       <mat-hint *ngIf="errorMessage != ''">{{ errorMessage }}</mat-hint>
     </div>
+
   </form>
 </div>

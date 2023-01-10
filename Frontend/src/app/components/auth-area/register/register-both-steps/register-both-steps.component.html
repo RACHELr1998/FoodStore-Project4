@@ -1,18 +1,23 @@
-<div>
-  <mat-stepper linear #stepper>
-    <mat-step label="Register">
-      <app-register-step-one
-        (registerStepOne)="registerDetailsStepOne($event)"
-      ></app-register-step-one>
-    </mat-step>
-    <mat-step label="More Info" completed="false">
-      <app-register-step-two
-        (registerStepTwo)="registerDetailsStepTwo($event)"
-      ></app-register-step-two>
-    </mat-step>
-  </mat-stepper>
-  <a routerLink="/home"
-    ><mat-icon>arrow_back</mat-icon>
-    <div class="backLoginText">Go to login</div></a
-  >
+<div class="divRegister">
+  <div>
+    <mat-stepper linear #stepper>
+      <mat-step label="Register">
+        <app-register-step-one
+          (registerStepOne)="registerDetailsStepOne($event)"
+        ></app-register-step-one>
+      </mat-step>
+      <mat-step label="More Info" completed="false">
+        <app-register-step-two
+          (registerStepTwo)="registerDetailsStepTwo($event)"
+        ></app-register-step-two>
+      </mat-step>
+    </mat-stepper>
+
+    <div class="backLoginBtn">
+      <a routerLink="/home"
+        ><mat-icon class="iconBack">arrow_back</mat-icon>
+        <div class="backLoginText">Go to login</div></a
+      >
+    </div>
+  </div>
 </div>

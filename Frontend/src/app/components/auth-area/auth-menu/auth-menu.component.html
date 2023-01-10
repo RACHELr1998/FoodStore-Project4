@@ -1,10 +1,10 @@
-<div className="AuthMenu">
+<div>
   <div *ngIf="!customer">
     <span>Hello Guest</span>
   </div>
   <div *ngIf="customer">
     <span>Hello {{ customer.firstName }} {{ customer.lastName }}</span>
     <span> | </span>
-    <a class="logout-icon" title="logout" routerLink="/logout">Logout</a>
+    <a class="logoutText" title="logout" routerLink="/logout">Logout</a>
   </div>
 </div>

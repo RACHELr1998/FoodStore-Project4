@@ -29,13 +29,13 @@ export class RegisterStepTwoComponent implements OnInit {
       firstName: (this.firstName = new FormControl("", [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(100),
+        Validators.maxLength(50),
       ])),
 
       lastName: (this.lastName = new FormControl("", [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(100),
+        Validators.maxLength(50),
       ])),
 
       city: (this.city = new FormControl("", [Validators.required])),

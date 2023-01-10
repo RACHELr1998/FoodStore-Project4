@@ -16,12 +16,12 @@
       <mat-hint
         align="start"
         *ngIf="firstName.errors?.['minlength'] && firstName.touched"
-        >First name too short</mat-hint
+        >First name must be minimum 2 chars</mat-hint
       >
       <mat-hint
         align="start"
         *ngIf="firstName.errors?.['maxlength'] && firstName.touched"
-        >First name too long</mat-hint
+        >First name can't exceed 50 chars</mat-hint
       >
     </mat-form-field>
 
@@ -36,12 +36,12 @@
       <mat-hint
         align="start"
         *ngIf="lastName.errors?.['minlength'] && lastName.touched"
-        >Last name too short</mat-hint
+        >Last name must be minimum 2 chars</mat-hint
       >
       <mat-hint
         align="start"
         *ngIf="lastName.errors?.['maxlength'] && lastName.touched"
-        >Last name too long</mat-hint
+        >Last name can't exceed 50 chars</mat-hint
       >
     </mat-form-field>
 
@@ -70,12 +70,12 @@
       <mat-hint
         align="start"
         *ngIf="street.errors?.['minlength'] && street.touched"
-        >Street too short</mat-hint
+        >Street must be minimum 2 charts</mat-hint
       >
       <mat-hint
         align="start"
         *ngIf="street.errors?.['maxlength'] && street.touched"
-        >Street too long</mat-hint
+        >Street can't exceed 100 charts</mat-hint
       >
     </mat-form-field>
 

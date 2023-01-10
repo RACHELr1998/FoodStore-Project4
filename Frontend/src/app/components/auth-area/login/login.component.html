@@ -14,8 +14,9 @@
           [(ngModel)]="credentials.username"
           #emailModel="ngModel"
           required
-          minlength="10"
-          maxlength="100"
+          minlength="5"
+          maxlength="50"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
         />
         <mat-hint
           align="start"
@@ -25,12 +26,17 @@
         <mat-hint
           align="start"
           *ngIf="emailModel.errors?.['minlength'] && emailModel.touched"
-          >Email too short</mat-hint
+          >Email must be minimum 5 chars</mat-hint
         >
         <mat-hint
           align="start"
           *ngIf="emailModel.errors?.['maxlength'] && emailModel.touched"
-          >Email too long</mat-hint
+          >Email can't exceed 50 chars</mat-hint
+        >
+        <mat-hint
+          align="end"
+          *ngIf="!emailModel.errors?.['required'] &&!emailModel.errors?.['minlength'] && !emailModel.errors?.['maxlength'] && emailModel.errors?.['pattern']"
+          >Email is invalid</mat-hint
         >
       </mat-form-field>
 
@@ -45,7 +51,7 @@
           #passwordModel="ngModel"
           required
           minlength="4"
-          maxlength="100"
+          maxlength="128"
         />
         <mat-hint
           align="start"
@@ -55,12 +61,12 @@
         <mat-hint
           align="start"
           *ngIf="passwordModel.errors?.['minlength'] && passwordModel.touched"
-          >Password too short</mat-hint
+          >Password must be minimum 4 charts</mat-hint
         >
         <mat-hint
           align="start"
           *ngIf="passwordModel.errors?.['maxlength'] && passwordModel.touched"
-          >Password too long</mat-hint
+          >Password can't exceed 128 charts</mat-hint
         >
       </mat-form-field>
 

@@ -6,7 +6,6 @@ import {
   AbstractControl,
   ValidatorFn,
 } from "@angular/forms";
-import { MatFormFieldControl } from "@angular/material/form-field/form-field-control";
 import { CustomerModel } from "src/app/models/customer-model.model";
 import { AuthService } from "src/app/services/auth.service";
 import { NotifyService } from "src/app/services/notify.service";
@@ -38,23 +37,23 @@ export class RegisterStepOneComponent implements OnInit {
     (this.IDCustomer = new FormControl("", [
       Validators.required,
       Validators.minLength(8),
-      Validators.maxLength(9),
+      Validators.maxLength(128),
     ])),
       (this.username = new FormControl("", [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(100),
+        Validators.minLength(5),
+        Validators.maxLength(50),
         this.regexValidator("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"),
       ])),
       (this.password = new FormControl("", [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(100),
+        Validators.minLength(4),
+        Validators.maxLength(128),
       ])),
       (this.confirmPassword = new FormControl("", [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(100),
+        Validators.minLength(4),
+        Validators.maxLength(128),
         this.ConfirmPassword(),
       ])),
       (this.registerForm = new FormGroup({
