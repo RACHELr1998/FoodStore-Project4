@@ -11,9 +11,7 @@ export interface ICartItemModel extends mongoose.Document {
 
 export const CartItemSchema = new mongoose.Schema<ICartItemModel>(
   {
-    productId: {
-      type: mongoose.Schema.Types.ObjectId,
-    },
+    productId: mongoose.Schema.Types.ObjectId,
     quantity: {
       type: Number,
       required: [true, "Missing quantity"],
@@ -24,11 +22,8 @@ export const CartItemSchema = new mongoose.Schema<ICartItemModel>(
       type: Number,
       required: [true, "Missing totalPrice"],
       min: [0, "Total price must be minimum 0 numbers"],
-      max: [10000, "Total price can't exceed 10000 numbers"],
     },
-    cartId: {
-      type: mongoose.Schema.Types.ObjectId,
-    },
+    cartId: mongoose.Schema.Types.ObjectId,
   },
   {
     versionKey: false,

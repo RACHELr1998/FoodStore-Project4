@@ -14,13 +14,17 @@ export const CredentialsSchema = new mongoose.Schema<ICredentialsModel>(
       maxlength: [50, "Username can't exceed 50 chars"],
       trim: true,
       unique: true,
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "You have entered an invalid email address",
+      ],
     },
     password: {
       type: String,
       required: [true, "Missing password"],
       minlength: [4, "Password must be minimum 4 charts"],
-      maxlength: [50, "Password can't exceed 50 charts"],
-      unique: true,
+      maxlength: [128, "Password can't exceed 128 charts"],
+      trim: true,
     },
   },
   {
@@ -31,5 +35,5 @@ export const CredentialsSchema = new mongoose.Schema<ICredentialsModel>(
 export const CredentialsModel = mongoose.model<ICredentialsModel>(
   "CredentialsModel",
   CredentialsSchema,
-  "credentials"
+  "customers"
 );

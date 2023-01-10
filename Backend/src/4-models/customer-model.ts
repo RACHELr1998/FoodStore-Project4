@@ -43,6 +43,7 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       minlength: [5, "Username must be minimum 5 chars"],
       maxlength: [50, "Username can't exceed 50 chars"],
       trim: true,
+      unique: true,
       match: [
         /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
         "You have entered an invalid email address",
@@ -52,7 +53,8 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       type: String,
       required: [true, "Missing password"],
       minlength: [4, "Password must be minimum 4 charts"],
-      maxlength: [128, "Password can't exceed 1000 charts"],
+      maxlength: [128, "Password can't exceed 128 charts"],
+      trim: true,
     },
     city: {
       type: String,
@@ -66,6 +68,7 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
       required: [true, "Missing street"],
       minlength: [2, "Street must be minimum 2 charts"],
       maxlength: [100, "Street can't exceed 100 charts"],
+      trim: true,
     },
     role: {
       type: Number,
@@ -82,13 +85,6 @@ export const CustomerSchema = new mongoose.Schema<ICustomerModel>(
     id: false,
   }
 );
-
-// CustomerSchema.virtual("role", {
-//   ref: RoleModel,
-//   localField: "roleId",
-//   foreignField: "_id",
-//   justOne: true,
-// });
 
 export const CustomerModel = mongoose.model<ICustomerModel>(
   "CustomerModel",

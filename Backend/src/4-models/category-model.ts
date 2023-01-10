@@ -11,6 +11,8 @@ export const CategorySchema = new mongoose.Schema<ICategoryModel>(
       required: [true, "Missing category"],
       minlength: [4, "Category must be minimum 4 charts"],
       maxlength: [50, "Category can't exceed 50 charts"],
+      trim: true,
+      unique: true,
     },
   },
   {

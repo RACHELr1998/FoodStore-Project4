@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { CartModel, ICartModel } from "./cart-model";
+import { CartModel } from "./cart-model";
 import CityEnum from "./city-enum";
 import { CustomerModel } from "./customer-model";
 
@@ -12,6 +12,7 @@ export interface IOrderModel extends mongoose.Document {
   deliveryDate: Date;
   orderDate: Date;
   creditCard: string;
+  creditCard4Charts: string;
 }
 
 export const OrderSchema = new mongoose.Schema<IOrderModel>(
@@ -49,6 +50,10 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>(
     creditCard: {
       type: String,
       required: [true, "Missing credit card"],
+      trim: true,
+    },
+    creditCard4Charts: {
+      type: String,
       trim: true,
     },
   },
