@@ -29,21 +29,8 @@ const materialComponents = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatDialogModule,
-
   MatSlideToggleModule,
-  //   MatCardModule,
-  //   MatStepperModule,
-  //   MatTabsModule,
-  //   MatIconModule,
-  //   MatFormFieldModule,
   MatDividerModule,
-  //   MatListModule,
-  //   MatDialogModule,
-  //   MatSelectModule,
-  //   MatDatepickerModule,
-  //   MatSidenavModule,
-  //   MatNativeDateModule,
-  //   MatInputModule,
 ];
 
 @NgModule({
