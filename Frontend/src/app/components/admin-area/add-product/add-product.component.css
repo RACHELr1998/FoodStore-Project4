@@ -1,0 +1,47 @@
+form {
+  padding: 0px 20px 0px 20px;
+  border-radius: 0px 3px 3px 0;
+}
+
+h2 {
+  margin: 15px;
+  bottom: 50px;
+  padding: 20px;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+mat-hint {
+  color: red;
+}
+
+.addProductBtn {
+  background-color: rgb(235, 221, 98);
+  color: rgb(141, 136, 136);
+  width: 100%;
+  margin-top: 15px;
+}
+
+.addProductBtn:hover {
+  background-color: rgb(235, 222, 104, 0.5);
+  cursor: pointer;
+}
+
+.mat-form-field {
+  display: block !important;
+}
+
+.chooseImageBtn {
+  background-color: transparent;
+  border: 1px solid;
+}

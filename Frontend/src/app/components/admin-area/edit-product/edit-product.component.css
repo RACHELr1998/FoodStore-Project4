@@ -1,0 +1,50 @@
+form {
+  padding: 0px 20px 0px 20px;
+}
+
+h2 {
+  margin: 10px;
+  bottom: 50px;
+  padding: 20px;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+mat-hint {
+  color: red;
+}
+
+.hide-hint {
+  display: none;
+}
+
+.editProductBtn {
+  background-color: rgb(235, 221, 98);
+  color: rgb(141, 136, 136);
+  width: 100%;
+  margin-top: 10px;
+}
+
+.editProductBtn:hover {
+  background-color: rgb(235, 222, 104, 0.5);
+  cursor: pointer;
+}
+
+.mat-form-field {
+  display: block !important;
+}
+
+.chooseImageBtn {
+  background-color: transparent;
+  border: 1px solid;
+}

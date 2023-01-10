@@ -1,6 +1,6 @@
 <div *ngIf="clickAddProduct">
   <form (ngSubmit)="addNewProduct()" [formGroup]="addForm">
-    <h4>Add Product</h4>
+    <h2>Add Product</h2>
 
     <mat-form-field appearance="fill">
       <mat-label>Category: </mat-label>
@@ -10,7 +10,7 @@
         }}</mat-option>
       </mat-select>
       <mat-hint
-        align="end"
+        align="start"
         *ngIf="categoryId.errors?.['required'] && categoryId.touched"
         >Missing category</mat-hint
       >
@@ -20,22 +20,22 @@
       <mat-label>Product Name: </mat-label>
       <input matInput type="text" [formControl]="productName" />
       <mat-hint
-        align="end"
+        align="start"
         *ngIf="productName.touched && productName.errors?.['required']"
         >Missing product name</mat-hint
       >
       <mat-hint
-        align="end"
+        align="start"
         *ngIf="productName.touched && productName.errors?.['minlength']"
         >Product name must be minimum 2 chars</mat-hint
       >
       <mat-hint
-        align="end"
+        align="start"
         *ngIf="productName.touched && productName.errors?.['maxlength']"
         >Product name can't exceed 50 chars</mat-hint
       >
       <mat-hint
-        align="end"
+        align="start"
         *ngIf="!productName.errors?.['required'] && !productName.errors?.['minlength'] && !productName.errors?.['maxlength'] && productName.invalid && !productName.errors?.['uniqueProductName']"
       >
         Product Name is taken by a different product</mat-hint
@@ -52,18 +52,25 @@
         min="0"
         max="10000"
       />
-      <mat-hint align="end" *ngIf="price.touched && price.errors?.['required']"
+      <mat-hint
+        align="start"
+        *ngIf="price.touched && price.errors?.['required']"
         >Missing price</mat-hint
       >
-      <mat-hint align="end" *ngIf="price.touched && price.errors?.['min']"
+      <mat-hint align="start" *ngIf="price.touched && price.errors?.['min']"
         >Price can't be negative
       </mat-hint>
-      <mat-hint align="end" *ngIf="price.touched && price.errors?.['max']"
+      <mat-hint align="start" *ngIf="price.touched && price.errors?.['max']"
         >Price can't exceed 10,000
       </mat-hint>
     </mat-form-field>
 
-    <button type="button" mat-raised-button (click)="imageInput.click()">
+    <button
+      type="button"
+      mat-raised-button
+      (click)="imageInput.click()"
+      class="chooseImageBtn"
+    >
       Choose Image
     </button>
     <input
@@ -74,16 +81,21 @@
       #imageFile
       hidden
       (change)="fileImageSelected($event)"
-      (click)="displayError = true"
+      (click)="errorMessageImg = true"
       type="file"
     />
-    <mat-hint align="end" [ngClass]="dynamicClass">{{
-      selectedImageFile?.name
-    }}</mat-hint>
-    <mat-hint align="end" *ngIf="displayError && image.errors?.['required']"
+    <mat-hint
+      align="start"
+      *ngIf="errorMessageImg && image.errors?.['required']"
       >Missing Image</mat-hint
     >
 
-    <button [disabled]="addForm.invalid">Add</button>
+    <button
+      mat-raised-button
+      [disabled]="addForm.invalid"
+      class="addProductBtn"
+    >
+      Add
+    </button>
   </form>
 </div>

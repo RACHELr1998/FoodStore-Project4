@@ -1,0 +1,44 @@
+mat-sidenav-container {
+  height: 100%;
+  position: relative;
+  background-color: #c7e9b9;
+}
+
+app-admin-action,
+app-add-product,
+app-edit-product {
+  background: lightblue;
+  border: 1px solid black;
+  height: 100%;
+  width: 30%;
+  border-radius: 8px;
+}
+
+mat-sidenav {
+  background-color: rgba(219, 226, 239, 0.3);
+  width: 350px;
+  margin: auto;
+  border-radius: 0px 3px 3px 0;
+}
+
+.listProductsSCategories {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions-button {
+  height: 30px;
+  width: 40px;
+  border: 1px solid lightgray;
+  border-radius: 0px 8px 8px 0px;
+  z-index: 10000000;
+  background-color: rgba(255, 165, 0, 0.5);
+  top: 95px;
+  position: fixed;
+  color: white;
+  padding: 2px;
+}
+
+.actions-button:hover {
+  cursor: pointer;
+}

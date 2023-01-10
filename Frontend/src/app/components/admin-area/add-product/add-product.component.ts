@@ -18,16 +18,15 @@ import { ProductsService } from "src/app/services/products.service";
   styleUrls: ["./add-product.component.css"],
 })
 export class AddProductComponent implements OnInit {
-  public selectedImageFile: any = null;
-  public dynamicClass: string = "";
-  public products: ProductModel[]; //In order to check unique name only
-
   @Input()
   public clickAddProduct: boolean;
-  public displayError = false;
+
+  public selectedImageFile: any = null;
+  public errorMessageImg = false;
 
   public product = new ProductModel();
   public categories: CategoryModel[];
+  public products: ProductModel[]; //In order to check unique name only
 
   public addForm: FormGroup;
   public productName: FormControl;
@@ -47,11 +46,6 @@ export class AddProductComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      // this.productName = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50), this.isUnique()]);
-      // this.price = new FormControl('', [Validators.required, Validators.min(0), Validators.max(10000)]);
-      // this.categoryId = new FormControl('', [Validators.required]);
-      // this.image = new FormControl('', [Validators.required]); //* image is required!!
-
       this.addForm = new FormGroup({
         categoryId: (this.categoryId = new FormControl("", [
           Validators.required,
@@ -87,25 +81,25 @@ export class AddProductComponent implements OnInit {
     const errorMsg = "Please fill out all fields properly";
     try {
       //These 4 if's is for second time you try to add a product - it won't let you without filling out all fields:
-      //   if (this.productName.value === null) {
-      //     this.notify.error(errorMsg);
-      //     return;
-      //   }
+      if (this.productName.value === null) {
+        this.notify.error(errorMsg);
+        return;
+      }
 
-      //   if (this.price.value === null) {
-      //     this.notify.error(errorMsg);
-      //     return;
-      //   }
+      if (this.price.value === null) {
+        this.notify.error(errorMsg);
+        return;
+      }
 
-      //   if (this.categoryId.value === null) {
-      //     this.notify.error(errorMsg);
-      //     return;
-      //   }
+      if (this.categoryId.value === null) {
+        this.notify.error(errorMsg);
+        return;
+      }
 
-      //   if (this.imageFileRef.nativeElement.files[0] === undefined) {
-      //     this.notify.error(errorMsg);
-      //     return;
-      //   }
+      if (this.imageFileRef.nativeElement.files[0] === undefined) {
+        this.notify.error(errorMsg);
+        return;
+      }
 
       this.product.categoryId = this.categoryId.value;
       this.product.productName = this.productName.value;
@@ -140,7 +134,6 @@ export class AddProductComponent implements OnInit {
           p.productName?.toLowerCase() ===
             this.productName.value?.toLowerCase() && p._id != this.product._id
       );
-      console.log(productNameTaken, this.productName, this.products);
 
       if (productNameTaken.length > 0) {
         return { uniqueProductName: false };

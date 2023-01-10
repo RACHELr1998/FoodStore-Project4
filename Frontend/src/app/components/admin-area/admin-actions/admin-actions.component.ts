@@ -20,7 +20,7 @@ export class AdminActionsComponent implements OnInit {
     }
   }
 
-  //it's order to edit button can be clicked more than once - (see productsService line 22 for reference)
+  //it's order to edit button can be clicked more than once - (see productsService file line 22 for reference)
   @Input("isAdminActionInput") set isAdminActionInput(isAdd: boolean) {}
 
   constructor(private productsService: ProductsService) {}

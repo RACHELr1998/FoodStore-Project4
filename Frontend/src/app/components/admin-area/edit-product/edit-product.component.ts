@@ -24,18 +24,14 @@ export class EditProductComponent implements OnInit {
   public selectedImageFile: any = null;
   public selectedImageName: string;
 
-  public dynamicClass: string = "";
-
-  public displayError = false;
-
   public editForm: FormGroup;
-  public nameInput: FormControl;
-  public priceInput: FormControl;
-  public categoryIdInput: FormControl;
-  public imageInput: FormControl;
+  public productName: FormControl;
+  public price: FormControl;
+  public categoryId: FormControl;
+  public image: FormControl;
 
-  @ViewChild("imageBox")
-  public imageProductRef: ElementRef<HTMLInputElement>;
+  @ViewChild("imageFile")
+  public imageFileRef: ElementRef<HTMLInputElement>;
 
   @Input("editProduct") set editProduct(product: ProductModel) {
     if (product) {
@@ -51,25 +47,25 @@ export class EditProductComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.nameInput = new FormControl("", [
+      this.productName = new FormControl("", [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(100),
-        this.isUnique(),
+        Validators.maxLength(50),
+        this.isUniqueName(),
       ]);
-      this.priceInput = new FormControl("", [
+      this.price = new FormControl("", [
         Validators.required,
         Validators.min(0),
         Validators.max(10000),
       ]);
-      this.categoryIdInput = new FormControl("", [Validators.required]);
-      this.imageInput = new FormControl("", []);
+      this.categoryId = new FormControl("", [Validators.required]);
+      this.image = new FormControl("", []);
 
       this.editForm = new FormGroup({
-        nameBox: this.nameInput,
-        priceBox: this.priceInput,
-        categoryIdBox: this.categoryIdInput,
-        imageBox: this.imageInput,
+        productNameBox: this.productName,
+        priceBox: this.price,
+        categoryIdBox: this.categoryId,
+        imageBox: this.image,
       });
 
       this.categories = await this.productsService.getAllCategories();
@@ -86,15 +82,13 @@ export class EditProductComponent implements OnInit {
 
   public async sendEditProduct() {
     try {
-      this.productToEdit.productName = this.nameInput.value;
-      this.productToEdit.price = this.priceInput.value;
-      this.productToEdit.categoryId = this.categoryIdInput.value;
-      this.productToEdit.image = this.imageProductRef.nativeElement.files[0];
+      this.productToEdit.productName = this.productName.value;
+      this.productToEdit.price = this.price.value;
+      this.productToEdit.categoryId = this.categoryId.value;
+      this.productToEdit.image = this.imageFileRef.nativeElement.files[0];
 
       await this.productsService.updateProduct(this.productToEdit);
       this.notify.success("Product has been updated");
-
-      this.dynamicClass = "hide-hint";
     } catch (err: any) {
       this.notify.error(err);
     }
@@ -102,14 +96,14 @@ export class EditProductComponent implements OnInit {
 
   getProductDetails() {
     this.editForm.patchValue({
-      nameBox: this.productToEdit.productName,
+      productNameBox: this.productToEdit.productName,
       priceBox: this.productToEdit.price,
       categoryIdBox: this.productToEdit.categoryId,
       imageBox: null,
     });
   }
 
-  isUnique(): ValidatorFn {
+  isUniqueName(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
       if (!this.products || this.products.length === 0) {
         return null;
@@ -117,12 +111,13 @@ export class EditProductComponent implements OnInit {
 
       const nameTaken = this.products.filter(
         (p) =>
-          p.productName.toLowerCase() === this.nameInput.value.toLowerCase() &&
+          p.productName.toLowerCase() ===
+            this.productName.value.toLowerCase() &&
           p._id != this.productToEdit._id
       );
 
       if (nameTaken.length > 0) {
-        return { uniqueName: false };
+        return { uniqueProductName: false };
       } else {
         return null;
       }
