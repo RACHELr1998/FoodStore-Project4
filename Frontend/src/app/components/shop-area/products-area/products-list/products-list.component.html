@@ -1,4 +1,5 @@
-<div class="product-list-container">
+<div>
+  <div *ngIf="!products" class="loader"></div>
   <app-product-card
     *ngFor="let p of products"
     [product]="p"

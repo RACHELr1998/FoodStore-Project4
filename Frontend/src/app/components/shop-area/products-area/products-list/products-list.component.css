@@ -1,1 +1,31 @@
+.loader {
+  margin: auto;
+  margin-top: 12%;
+  border: 8px solid rgb(228, 214, 28);
+  border-radius: 50%;
+  border-top: 8px solid rgb(247, 221, 75);
+  width: 150px;
+  height: 150px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
 
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

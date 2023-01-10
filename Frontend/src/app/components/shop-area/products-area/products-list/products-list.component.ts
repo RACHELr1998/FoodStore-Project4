@@ -8,7 +8,7 @@ import {
 import { Unsubscribe } from "redux";
 import { ProductModel } from "src/app/models/product-model.model";
 import { categoriesStore } from "src/app/redux/categories.state";
-import { productsStore } from "src/app/redux/productsState";
+import { productsStore } from "src/app/redux/product.state";
 import { NotifyService } from "src/app/services/notify.service";
 import { ProductsService } from "src/app/services/products.service";
 
@@ -19,7 +19,7 @@ import { ProductsService } from "src/app/services/products.service";
 })
 export class ProductsListComponent implements OnInit, OnDestroy {
   public products: ProductModel[];
-  //   public role: RoleEnum;
+
   private productsUnsubscribe: Unsubscribe;
   private categoriesUnsubscribe: Unsubscribe;
 
@@ -30,8 +30,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     try {
-      //   this.role = authStore.getState().customer.role;
-
       this.products = await this.productsService.getAllProducts();
 
       this.categoriesUnsubscribe = categoriesStore.subscribe(() => {

@@ -1,9 +1,9 @@
 .boxProductCard {
   display: inline-block;
   margin: 10px;
-  border-radius: 20px;
+  border-radius: 40px;
   text-align: center;
-  width: 195px;
+  width: 190px;
   box-shadow: 5px 5px 5px grey;
 }
 
@@ -18,14 +18,13 @@ mat-card {
 }
 
 img {
-  height: 170px;
+  height: 140px;
   margin-bottom: 0;
 }
 
 mat-card-title {
   font-size: 14px !important;
   margin-bottom: 0;
-
   width: 124px;
   white-space: nowrap;
   overflow: hidden;
@@ -40,7 +39,7 @@ mat-card-content {
   margin-bottom: 0;
 }
 
-button {
-  background-color: rgb(17, 45, 78);
-  color: rgb(249, 247, 247);
+.edit-btn {
+  background-color: rgb(240, 236, 41);
+  color: grey(249, 247, 247);
 }

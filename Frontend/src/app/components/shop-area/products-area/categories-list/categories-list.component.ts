@@ -3,14 +3,13 @@ import { MatTabGroup } from "@angular/material/tabs";
 import { Unsubscribe } from "redux";
 import { CategoryModel } from "src/app/models/category-model.model";
 import { ProductModel } from "src/app/models/product-model.model";
-import { productsStore } from "src/app/redux/productsState";
+import { productsStore } from "src/app/redux/product.state";
 import { NotifyService } from "src/app/services/notify.service";
 import { ProductsService } from "src/app/services/products.service";
 
 @Component({
   selector: "app-categories-list",
   templateUrl: "./categories-list.component.html",
-  styleUrls: ["./categories-list.component.css"],
 })
 export class CategoriesListComponent implements OnInit, OnDestroy {
   public categories: CategoryModel[];
@@ -33,7 +32,7 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
         this.searchProducts = productsStore.getState().searchProducts;
 
         if (this.searchProducts !== "") {
-          //* select "All" products
+          //select "All" products
           this.tabGroup.selectedIndex = 0;
         }
       });

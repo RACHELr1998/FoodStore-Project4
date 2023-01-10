@@ -1,22 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ProductModel } from "src/app/models/product-model.model";
-import RoleEnum from "src/app/models/role-enum.model";
+import RoleEnum from "src/app/models/role-enum";
 import { AuthService } from "src/app/services/auth.service";
 import { ProductsService } from "src/app/services/products.service";
 import { environment } from "src/environments/environment";
+import { authStore } from "../../../../redux/auth.state";
 
 @Component({
   selector: "app-product-card",
   templateUrl: "./product-card.component.html",
   styleUrls: ["./product-card.component.css"],
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
   @Input() public product: ProductModel;
 
-  public customer = this.authService.isLoggedIn();
+  public customer = authStore.getState().customer?.role === RoleEnum.Customer;
   public admin = this.authService.isAdmin();
-
-  //   public imageSource: string;
 
   public imagesUrl = environment.imagesUrl;
 
@@ -24,10 +23,6 @@ export class ProductCardComponent implements OnInit {
     private productsService: ProductsService,
     private authService: AuthService
   ) {}
-
-  ngOnInit(): void {
-    // this.imageSource = environment.imagesUrl + this.product.imageName;
-  }
 
   //Edit product by admin only:
   @Output()
