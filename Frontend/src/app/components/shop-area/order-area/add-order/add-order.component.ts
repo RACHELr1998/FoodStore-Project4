@@ -5,7 +5,7 @@ import { Unsubscribe } from "redux";
 import CityEnum from "src/app/models/city-enum";
 import { CustomerModel } from "src/app/models/customer-model.model";
 import { OrderModel } from "src/app/models/order-model.model";
-import { authStore } from "src/app/redux/AuthState";
+import { authStore } from "src/app/redux/auth.state";
 import { cartsStore } from "src/app/redux/carts.state";
 import { ordersStore } from "src/app/redux/orders.state";
 import { CartService } from "src/app/services/cart.service";

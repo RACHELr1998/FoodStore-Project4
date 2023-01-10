@@ -1,0 +1,52 @@
+input,
+select {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 0 0 5px 0;
+}
+
+mat-label {
+  font-size: 18px;
+}
+
+mat-hint:not(.old-color):not(.dbClickInfo) {
+  color: red;
+}
+
+.dbClickInfo {
+  font-size: smaller;
+}
+
+.addOrderBtn {
+  background-color: rgb(144, 195, 122);
+  color: rgb(70, 70, 70);
+  width: 100%;
+}
+
+.addOrderBtn:hover {
+  background-color: rgba(144, 195, 122, 0.5);
+  cursor: pointer;
+}
+
+.addOrderBtn:disabled {
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: auto;
+}
+
+mat-form-field {
+  display: block !important;
+}
+
+@media only screen and (max-width: 950px) {
+  mat-form-field,
+  .addOrderBtn {
+    width: 256px;
+  }
+}
+
+@media only screen and (max-width: 615px) {
+  .addOrderBtn {
+    margin-bottom: 18px;
+  }
+}

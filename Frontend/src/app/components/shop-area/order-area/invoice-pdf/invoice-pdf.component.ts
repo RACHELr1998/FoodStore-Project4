@@ -2,9 +2,10 @@ import { Component, OnInit } from "@angular/core";
 const pdfMake = require("pdfmake/build/pdfmake.js");
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { OrderModel } from "src/app/models/order-model.model";
-import { authStore } from "src/app/redux/AuthState";
+import { authStore } from "src/app/redux/auth.state";
 import { ordersStore } from "src/app/redux/orders.state";
 import { CartService } from "src/app/services/cart.service";
+import { OrdersService } from "src/app/services/orders.service";
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -13,9 +14,12 @@ import { CartService } from "src/app/services/cart.service";
   styleUrls: ["./invoice-pdf.component.css"],
 })
 export class InvoicePDFComponent {
-  constructor(private cartsService: CartService) {}
+  constructor(
+    private cartsService: CartService,
+    private ordersService: OrdersService
+  ) {}
 
-  async generatePDF() {
+  async downloadPDF() {
     let lastOrder: OrderModel = ordersStore.getState().lastOrder;
 
     const customer = authStore.getState().customer;
@@ -61,15 +65,7 @@ export class InvoicePDFComponent {
                 alignment: "right",
               },
               {
-                text:
-                  "Payments Credit Card: " +
-                  lastOrder.creditCard.substring(
-                    lastOrder.creditCard.lastIndexOf("4")
-                  ),
-                alignment: "right",
-              },
-              {
-                text: "PO Number :" + lastOrder._id,
+                text: `Credit Card: ${lastOrder.creditCard4Charts}`,
                 alignment: "right",
               },
             ],
@@ -146,30 +142,10 @@ export class InvoicePDFComponent {
           bold: true,
           alignment: "right",
         },
-
-        {
-          text: "More Info",
-          style: "subheader",
-        },
-        {
-          margin: [0, 0, 0, 15],
-          ul: [
-            {
-              text: "LinkedIn",
-              color: "blue",
-              link: "https://www.linkedin.com/in/rachelr98/",
-            },
-
-            {
-              text: "GitHub",
-              color: "blue",
-              link: "https://github.com/RACHELr1998",
-            },
-          ],
-        },
         {
           text: "The invoice was produced by the system and approved by the tax authorities.",
           alignment: "center",
+          style: "commentInvoice",
           fontSize: 10,
         },
       ],
@@ -192,6 +168,9 @@ export class InvoicePDFComponent {
           bold: true,
           fontSize: 13,
           color: "black",
+        },
+        commentInvoice: {
+          margin: [0, 60, 0, 0],
         },
       },
     };

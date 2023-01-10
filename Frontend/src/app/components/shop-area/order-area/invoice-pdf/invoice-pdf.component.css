@@ -1,3 +1,10 @@
-div {
+.invoice {
+  display: inline-block;
+  color: rgb(17, 45, 78);
+  text-decoration: underline;
+}
+
+.invoice:hover {
+  color: rgb(3, 184, 34);
   cursor: pointer;
 }

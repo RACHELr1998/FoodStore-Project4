@@ -1,9 +1,10 @@
-<div>
+<div class="orderContainer">
   <div class="divLeftOrder">
     <div>
       <h2>Order Details</h2>
-      <div mat-raised-button routerLink="/shop">
-        <mat-icon>arrow_back_ios</mat-icon>Back to shop
+
+      <div class="back-shop" mat-raised-button routerLink="/shop">
+        <mat-icon class="back-shop-icon">arrow_back_ios</mat-icon>Back to shop
       </div>
     </div>
 
@@ -12,16 +13,14 @@
         <app-cart-item [cartItem]="c"></app-cart-item>
         <mat-divider></mat-divider>
       </mat-list-item>
-
-      <h5>No changes permitted here !</h5>
-      <mat-divider></mat-divider>
-      <div>
-        <p>Total: {{ totalPrice | currency : "ILS" }}</p>
+      <div class="orderFooter">
+        <h3>No changes permitted here !</h3>
+        <p class="totalPrice">Total: {{ totalPrice | currency : "ILS" }}</p>
       </div>
     </mat-list>
   </div>
 
-  <div>
+  <div class="divRightOrder">
     <app-add-order></app-add-order>
   </div>
 </div>
