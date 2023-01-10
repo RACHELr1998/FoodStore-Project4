@@ -13,4 +13,5 @@ export class OrderModel {
   public deliveryDate: Date;
   public orderDate: Date;
   public creditCard: string;
+  public creditCard4Charts: string;
 }

@@ -1,5 +1,5 @@
 import CityEnum from "./city-enum";
-import RoleEnum from "./role-enum.model";
+import RoleEnum from "./role-enum";
 
 export class CustomerModel {
   public _id: string;
@@ -10,6 +10,5 @@ export class CustomerModel {
   public password: string;
   public city: CityEnum;
   public street: string;
-  public roleId: string;
   public role: RoleEnum;
 }

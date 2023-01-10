@@ -1,4 +1,3 @@
-import { CartItemModel } from "./cartItem-model.model";
 import { CustomerModel } from "./customer-model.model";
 
 export class CartModel {
@@ -7,5 +6,4 @@ export class CartModel {
   public customer: CustomerModel;
   public cartProdDate: Date;
   public isClosed: boolean;
-  public cartItems: CartItemModel;
 }
