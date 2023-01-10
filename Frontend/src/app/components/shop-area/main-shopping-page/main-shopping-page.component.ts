@@ -4,8 +4,6 @@ import { Router } from "@angular/router";
 import { Unsubscribe } from "redux";
 import { CartItemModel } from "src/app/models/cartItem-model.model";
 import { CustomerModel } from "src/app/models/customer-model.model";
-import RoleEnum from "src/app/models/role-enum.model";
-import { authStore } from "src/app/redux/AuthState";
 import { cartsStore } from "src/app/redux/carts.state";
 import { AuthService } from "src/app/services/auth.service";
 import { CartService } from "src/app/services/cart.service";
@@ -28,7 +26,7 @@ export class MainShoppingPageComponent implements OnInit {
     public authService: AuthService,
     private router: Router,
     public dialog: MatDialog,
-    public notifyService: NotifyService
+    public notify: NotifyService
   ) {}
 
   async ngOnInit() {
@@ -36,11 +34,6 @@ export class MainShoppingPageComponent implements OnInit {
     if (this.authService.isAdmin()) {
       this.router.navigateByUrl("/admin-home");
     }
-
-    //If the cart is empty don't open the sidenav:
-    // if (cartsStore.getState().cartItems.length === 0) {
-    //   this.opened = false;
-    // }
 
     const cart = await this.cartService.getCart();
     this.allCartItemsOfCart = await this.cartService.getAllItemsByCart(

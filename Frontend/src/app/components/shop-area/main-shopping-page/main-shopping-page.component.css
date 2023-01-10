@@ -5,9 +5,10 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-  width: 350px;
+  width: 400px;
   margin: auto;
   border-radius: 0px 3px 3px 0;
+  background: rgb(224, 226, 233);
 }
 
 .cart-icon {
@@ -15,7 +16,7 @@ mat-sidenav {
   top: 2px;
 }
 
-.total-amount {
+.totalPrice {
   color: white;
   text-align: center;
   position: absolute;
@@ -24,7 +25,7 @@ mat-sidenav {
   bottom: 0;
 }
 
-.side-bar-button {
+.side-bar-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,12 +39,12 @@ mat-sidenav {
   position: fixed;
 }
 
-.side-bar-button:hover {
+.side-bar-btn:hover {
   cursor: pointer;
 }
 
 @media only screen and (max-width: 1020px) {
-  .side-bar-button {
+  .side-bar-btn {
     top: 13%;
   }
 }

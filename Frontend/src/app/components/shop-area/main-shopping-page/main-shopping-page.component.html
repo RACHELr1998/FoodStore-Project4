@@ -7,8 +7,8 @@
     ></app-cart>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="side-bar-button" (click)="opened = !opened">
-      <div class="total-amount" *ngIf="allCartItemsOfCart">
+    <div class="side-bar-btn" (click)="opened = !opened">
+      <div class="totalPrice" *ngIf="allCartItemsOfCart">
         {{ allCartItemsOfCart.length }}
         <mat-icon class="cart-icon">shopping_cart</mat-icon>
       </div>
