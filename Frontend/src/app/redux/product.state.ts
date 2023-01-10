@@ -28,6 +28,7 @@ export function productReducer(
   action: ProductsAction
 ): ProductState {
   const newState = { ...currentState }; // We must duplicate the original object
+
   // Do the change on the newState:
   switch (action.type) {
     case ProductsActionType.FetchProducts: // Here payload must be all Products fetched from the server

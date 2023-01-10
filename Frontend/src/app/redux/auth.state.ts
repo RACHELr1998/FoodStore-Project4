@@ -18,9 +18,9 @@ export class AuthState {
 
 // 2. enum Action Type
 export enum AuthActionType {
-  Register,
-  Login,
-  Logout,
+  Register = "Register",
+  Login = "Login",
+  Logout = "Logout",
 }
 
 // 3. interface Action

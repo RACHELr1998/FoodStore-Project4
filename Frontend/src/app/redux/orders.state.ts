@@ -25,6 +25,7 @@ export function ordersReducer(
   action: OrdersAction
 ): OrdersState {
   const newState = { ...currentState }; // We must duplicate the original object
+
   // Do the change on the newState:
   switch (action.type) {
     case OrdersActionType.FetchOrders: // Here payload must be all corders fetched from the server
@@ -32,7 +33,7 @@ export function ordersReducer(
       break;
 
     case OrdersActionType.AddOrder: // Here payload must be the order to add
-      newState.lastOrder = action.payload;//Set the new order in the last order
+      newState.lastOrder = action.payload; //Set the new order in the last order
       newState.orders.push(action.payload); // Add the new order to the state
       break;
   }

@@ -28,6 +28,7 @@ export function cartsReducer(
   action: CartsAction
 ): CartsState {
   const newState = { ...currentState }; // We must duplicate the original object
+
   // Do the change on the newState:
   switch (action.type) {
     case CartsActionType.FetchCartsItems: // Here payload must be all cartItems fetched from the server

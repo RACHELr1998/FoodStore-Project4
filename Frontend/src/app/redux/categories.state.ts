@@ -25,6 +25,7 @@ export function categoriesReducer(
   action: CategoriesAction
 ): CategoriesState {
   const newState = { ...currentState }; // We must duplicate the original object
+
   // Do the change on the newState:
   switch (action.type) {
     case CategoriesActionType.FetchCategories: // Here payload must be all categories fetched from the server
