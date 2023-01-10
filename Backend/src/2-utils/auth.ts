@@ -13,15 +13,6 @@ function generateNewToken(customer: ICustomerModel): string {
   return token;
 }
 
-// function generateNewTokenForCredentials(customer: ICredentialsModel): string {
-//   // Create object to insert inside the token:
-//   const container = { customer };
-//   // Generate new token:
-//   const token = jwt.sign(container, secretKey, { expiresIn: "2h" });
-
-//   return token;
-// }
-
 function verifyToken(authHeader: string): Promise<Boolean> {
   return new Promise<boolean>((resolve, reject) => {
     try {
@@ -64,7 +55,7 @@ function getCustomerRoleFromToken(authHeader: string): number {
   // Get the Customer:
   const customer = container.customer;
   // Get Customer role:
-  const role = customer.role
+  const role = customer.role;
 
   return role;
 }
@@ -84,7 +75,6 @@ function getCustomerIdFromToken(authHeader: string): ObjectId {
 
 export default {
   generateNewToken,
-  //   generateNewTokenForCredentials,
   verifyToken,
   getCustomerRoleFromToken,
   getCustomerIdFromToken,
