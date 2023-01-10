@@ -1,15 +1,11 @@
 import auth from "../2-utils/auth";
 import hash from "../2-utils/cyber";
 import { UnauthorizeError, ValidationError } from "../4-models/client-errors";
-import {
-  CredentialsModel,
-  ICredentialsModel,
-} from "../4-models/credentials-model";
+import { ICredentialsModel } from "../4-models/credentials-model";
 import { CustomerModel, ICustomerModel } from "../4-models/customer-model";
 
 async function register(customer: ICustomerModel): Promise<string> {
   // Returning a new token
-  console.log(customer);
 
   // Validate:
   const error = customer.validateSync();
@@ -42,8 +38,6 @@ async function register(customer: ICustomerModel): Promise<string> {
 }
 
 async function login(credentials: ICredentialsModel): Promise<string> {
-  console.log(credentials);
-
   // Validate:
   const error = credentials.validateSync();
   if (error) throw new ValidationError(error.message);
@@ -56,7 +50,6 @@ async function login(credentials: ICredentialsModel): Promise<string> {
     username: credentials.username,
     password: credentials.password,
   }).exec();
-  console.log(customer);
 
   // If no such customer exists:
   if (!customer) throw new UnauthorizeError("Incorrect username or password!");
@@ -69,22 +62,6 @@ async function login(credentials: ICredentialsModel): Promise<string> {
 
   return token;
 }
-
-// async function usernameExists(username: string): Promise<boolean> {
-//   // Get amount of customers with 'username'
-//   const usernameExists = await CustomerModel.findOne(
-//     {
-//       username: username,
-//     },
-//     ["username"]
-//   ).exec();
-//   // if there are more than 0, the username exists.
-//   if (!usernameExists) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
 
 async function areEmailOrIDCustomerExist(
   customer: ICustomerModel
@@ -114,5 +91,4 @@ export default {
   register,
   login,
   areEmailOrIDCustomerExist,
-  //   usernameExists,
 };

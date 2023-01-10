@@ -19,41 +19,21 @@ function getCart(authHeader: string, isClosed: boolean): Promise<ICartModel> {
     .exec();
 }
 
-// function getCart(customerId: string): Promise<ICartModel> {
-//   //get the customer from the provided Token:
-//   // const customerId = auth.getCustomerIdFromToken(authHeader);
-//   if (!customerId) throw new IdNotFoundError(customerId);
-//   return CartModel.findOne({ customerId }).populate("customer").exec();
-// }
-
-//Add cart by customer
+//Add cart by customer- used when adding a cartItem to the cart:
 async function addCart(cart: ICartModel): Promise<ICartModel> {
   const errors = cart.validateSync();
   if (errors) throw new ValidationError(errors.message);
-  return await cart.save();
+  return cart.save();
 }
 
-// Update cart by customer:
-// async function updateCart(cart: ICartModel): Promise<ICartModel> {
-//   const errors = cart.validateSync();
-//   if (errors) throw new ValidationError(errors.message);
-//   const updatedCart = await CartModel.findByIdAndUpdate(cart._id, cart, {
-//     returnOriginal: false,
-//   }).exec(); // { returnOriginal: false } --> return back db cart and not argument cart.
-//   if (!updatedCart) throw new ObjectIdNotFoundError(cart._id);
-//   return updatedCart;
-// }
-
-//Close the cart after the customer has finished ordering:
+//Close the cart after the customer has finished ordering- used an order-logic file:
 async function closeCart(_id: string): Promise<ICartModel> {
   await CartModel.updateOne({ _id }, { $set: { isClosed: true } }).exec();
-
   const cart = await CartModel.findOne({ _id }).exec();
-
   return cart;
 }
 
-//Get all items that in the cart by caryId:
+//Get all cartItems that in the cart by caryId:
 async function getAllCartItemsByCart(
   cartId: string
 ): Promise<ICartItemModel[]> {
@@ -84,7 +64,7 @@ async function addCartItemToCart(
     cartItem.cartId = newCart._id;
 
     //Add new cartItem to the cart:
-    return await cartItem.save();
+    return cartItem.save();
   }
 
   //If there is existing cart:
@@ -109,21 +89,6 @@ async function addCartItemToCart(
   }
 }
 
-// Update cartItem by customer:
-// async function updateCartItem(
-//   cartItem: ICartItemModel
-// ): Promise<ICartItemModel> {
-//   const errors = cartItem.validateSync();
-//   if (errors) throw new ValidationError(errors.message);
-//   const updatedCartItem = await CartItemModel.findByIdAndUpdate(
-//     cartItem._id,
-//     cartItem,
-//     { returnOriginal: false }
-//   ).exec(); // { returnOriginal: false } --> return back db cartItem and not argument cartItem.
-//   if (!updatedCartItem) throw new IdNotFoundError(cartItem._id);
-//   return updatedCartItem;
-// }
-
 //Delete cartItem from cart by Customer:
 async function deleteCartItemFromCart(
   cartId: string,
@@ -142,22 +107,12 @@ async function deleteAllCartItemsFromCart(cartId: string): Promise<void> {
   if (!deletedCartItems) throw new IdNotFoundError(cartId);
 }
 
-//Add order:
-// async function addOrder(order: IOrderModel): Promise<IOrderModel> {
-//   const errors = order.validateSync();
-//   if (errors) throw new ValidationError(errors.message);
-//   return await order.save();
-// }
-
 export default {
   getCart,
   addCart,
-  //   updateCart,
   closeCart,
   getAllCartItemsByCart,
   addCartItemToCart,
-  //   updateCartItem,
   deleteCartItemFromCart,
   deleteAllCartItemsFromCart,
-  //   addOrder,
 };

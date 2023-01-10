@@ -5,11 +5,14 @@ import cartLogic from "./cart-logic";
 
 //Adding a new order:
 async function addOrder(order: IOrderModel): Promise<IOrderModel> {
+  //Validation:
   const errors = order.validateSync();
   if (errors) throw new ValidationError(errors.message);
 
+  //hash credit-card
   order.creditCard = hash(order.creditCard);
 
+  //set closed the cart
   await cartLogic.closeCart(order.cartId.toString());
 
   //Add an order:

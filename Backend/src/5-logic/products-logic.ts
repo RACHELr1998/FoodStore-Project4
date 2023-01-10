@@ -29,8 +29,7 @@ async function countProducts(): Promise<number> {
 
 // Add product By Admin:
 async function addProduct(product: IProductModel): Promise<IProductModel> {
-  console.log(product);
-
+  //Validate:
   const errors = product.validateSync();
   if (errors) throw new ValidationError(errors.message);
 
@@ -47,9 +46,7 @@ async function addProduct(product: IProductModel): Promise<IProductModel> {
     // Delete File before saving.
     delete product.image;
   }
-  console.log(product);
-
-  return await product.save();
+  return product.save();
 }
 
 // Update product by Admin:
