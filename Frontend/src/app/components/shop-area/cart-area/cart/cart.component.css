@@ -16,11 +16,6 @@ h2 {
   justify-content: space-around;
 }
 
-.order-icon {
-  top: 5px;
-  position: relative;
-}
-
 .orderBtn {
   background-color: rgb(235, 222, 104);
   color: rgb(70, 70, 70);
@@ -34,6 +29,11 @@ h2 {
 .orderBtn:hover {
   background-color: #9aee76;
   cursor: pointer;
+}
+
+.order-icon {
+  top: 5px;
+  position: relative;
 }
 
 .deleteAllBtn {

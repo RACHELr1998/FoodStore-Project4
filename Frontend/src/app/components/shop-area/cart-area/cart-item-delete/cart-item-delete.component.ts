@@ -9,7 +9,6 @@ export interface DialogData {
 @Component({
   selector: "app-cart-item-delete",
   templateUrl: "./cart-item-delete.component.html",
-  styleUrls: ["./cart-item-delete.component.css"],
 })
 export class CartItemDeleteComponent {
   constructor(

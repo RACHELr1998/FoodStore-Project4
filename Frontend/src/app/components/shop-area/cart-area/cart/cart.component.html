@@ -1,8 +1,8 @@
-<mat-list class="cart-list">
+<mat-list>
   <h2>My Cart</h2>
   <hr />
 
-  <h3 class="cartEmpty" *ngIf="allCartItemsOfCart?.length === 0">No Items</h3>
+  <h3 *ngIf="allCartItemsOfCart?.length === 0">No Items</h3>
 
   <mat-list-item *ngFor="let c of allCartItemsOfCart">
     <app-cart-item
@@ -10,7 +10,9 @@
       [onlyInTheCart]="isThisCart"
       (cartItemDelete)="deleteCurrentCartItem($event)"
     ></app-cart-item>
+    <br />
     <mat-divider></mat-divider>
+    <br />
   </mat-list-item>
 
   <div *ngIf="totalPrice && allCartItemsOfCart?.length !== 0">

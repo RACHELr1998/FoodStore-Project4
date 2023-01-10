@@ -9,7 +9,7 @@ import {
 import { Router } from "@angular/router";
 import { Unsubscribe } from "redux";
 import { CartItemModel } from "src/app/models/cartItem-model.model";
-import { productsStore } from "src/app/redux/productsState";
+import { productsStore } from "src/app/redux/product.state";
 import { environment } from "src/environments/environment";
 
 @Component({
