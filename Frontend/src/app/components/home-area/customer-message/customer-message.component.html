@@ -18,7 +18,7 @@
       </p>
     </ng-container>
     <!-- Third message option: first purchase -->
-    <ng-container *ngIf="customer && !activeCart && !lastOrder">
+    <ng-container *ngIf="!activeCart && !lastOrder">
       <p class="yellowFont">
         {{ customer.firstName }} welcome to your first purchase !
       </p>

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Unsubscribe } from "redux";
 import { CustomerModel } from "src/app/models/customer-model.model";
-import { authStore } from "src/app/redux/AuthState";
+import { authStore } from "src/app/redux/auth.state";
 import { CartService } from "src/app/services/cart.service";
 import { NotifyService } from "src/app/services/notify.service";
 import { OrdersService } from "src/app/services/orders.service";

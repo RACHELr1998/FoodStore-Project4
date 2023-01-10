@@ -3,7 +3,7 @@ import { Unsubscribe } from "redux";
 import { CartModel } from "src/app/models/cart-model.model";
 import { CustomerModel } from "src/app/models/customer-model.model";
 import { OrderModel } from "src/app/models/order-model.model";
-import { authStore } from "src/app/redux/AuthState";
+import { authStore } from "src/app/redux/auth.state";
 import { cartsStore } from "src/app/redux/carts.state";
 import { CartService } from "src/app/services/cart.service";
 import { NotifyService } from "src/app/services/notify.service";
