@@ -27,20 +27,4 @@ router.get(
   }
 );
 
-// router.get(
-//   "/images/:imageName",
-//   async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//       const imageName = request.params.imageName;
-
-//       let imageFile = imagesPath.getProductImageFile(imageName);
-//       if (!fs.existsSync(imageFile)) imageFile = imagesPath.notFoundImageFile;
-
-//       response.sendFile(imageFile);
-//     } catch (err: any) {
-//       next(err);
-//     }
-//   }
-// );
-
 export default router;
