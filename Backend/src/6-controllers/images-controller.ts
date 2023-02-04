@@ -1,8 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import path from "path";
-import imagesPath from "../2-utils/images-path";
 import imagesLogic from "../5-logic/images-logic";
-import fs from "fs";
 
 const router = express.Router();
 
