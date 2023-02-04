@@ -33,7 +33,7 @@ async function closeCart(_id: string): Promise<ICartModel> {
   return cart;
 }
 
-//Get all cartItems that in the cart by caryId:
+//Get all cartItems that in the cart by cartId:
 async function getAllCartItemsByCart(
   cartId: string
 ): Promise<ICartItemModel[]> {
