@@ -15,7 +15,7 @@ export const CredentialsSchema = new mongoose.Schema<ICredentialsModel>(
       trim: true,
       unique: true,
       match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
         "You have entered an invalid email address",
       ],
     },
