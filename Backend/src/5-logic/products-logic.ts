@@ -44,7 +44,7 @@ async function addProduct(product: IProductModel): Promise<IProductModel> {
     //move the file to assets
     await product.image.mv(`${config.imagesFolder}/${product.imageName}`);
     // Delete File before saving.
-    delete product.image;
+     product.image = undefined;
   }
   return product.save();
 }
@@ -71,7 +71,7 @@ async function updateProduct(product: IProductModel): Promise<IProductModel> {
     //move the file to assets
     await product.image.mv(`${config.imagesFolder}/${product.imageName}`); // mv = move = copy image.
     // Delete File before saving.
-    delete product.image;
+     product.image = undefined;
   }
 
   const updatedProduct = await ProductModel.findByIdAndUpdate(
